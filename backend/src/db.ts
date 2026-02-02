@@ -7,7 +7,7 @@ export function createDb() {
 
 
     // Reutilizable: lo centralizamos aquí
-    const filename = "data/disney.sqlite";
+    const filename = "data/disney.sqlite3";
     return new sqlite3.Database(filename);
 }
 
