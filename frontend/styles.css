@@ -1,0 +1,139 @@
+/* VARIABLES: Cambia esto y cambiará toda la web */
+:root {
+  --violeta-principal: #7f0df2;
+  --negro-profundo: #0a080d;
+  --gris-texto: #ab9cba;
+  --blanco: #ffffff;
+  --curva: 16px;
+}
+
+body {
+  background-color: var(--negro-profundo);
+  color: var(--blanco);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  margin: 0;
+}
+
+/* NAVEGACIÓN */
+.barra-navegacion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5%;
+  background: linear-gradient(to bottom, rgba(10, 8, 13, 1), transparent);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--violeta-principal);
+}
+
+.enlace-logo {
+  color: var(--violeta-principal);
+  text-decoration: none;
+  margin-right: 20px;
+  font-weight: 600;
+  transition: 0.8s;
+}
+
+.enlace-logo.activo,
+.enlace-logo:hover {
+  color: white;
+}
+
+.enlace {
+  color: var(--gris-texto);
+  text-decoration: none;
+  margin-right: 20px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.enlace.activo,
+.enlace:hover {
+  color: white;
+}
+
+/* HERO SECTION */
+.banner-hero {
+  position: relative;
+  height: 60vh;
+  margin: 0 5%;
+  border-radius: 24px;
+  overflow: hidden;
+  background: url("https://picsum.photos/id/10/1200/800") center/cover;
+}
+
+.capa-oscura {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    var(--negro-profundo) 10%,
+    transparent 70%
+  );
+}
+
+.info-hero {
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+  max-width: 450px;
+}
+
+.titulo-pelicula {
+  font-size: 3.5rem;
+  margin: 10px 0;
+  letter-spacing: -2px;
+}
+
+.boton-reproducir {
+  background: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+.boton-reproducir:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px var(--violeta-principal);
+}
+
+/* REJILLA DE PELÍCULAS */
+.seccion-peliculas {
+  padding: 40px 5%;
+}
+
+.rejilla-peliculas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.tarjeta-pelicula {
+  position: relative;
+  border-radius: var(--curva);
+  overflow: hidden;
+  transition: transform 0.4s ease;
+  cursor: pointer;
+}
+
+.tarjeta-pelicula:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--violeta-principal);
+}
+
+.tarjeta-pelicula img {
+  width: 100%;
+  display: block;
+}

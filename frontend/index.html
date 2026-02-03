@@ -1,14 +1,57 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>PureStream | Premium</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
-    <script src="script.js"></script>
   </head>
   <body>
-    <h1 id="movies"></h1>
+    <header class="barra-navegacion">
+      <div class="logo"><a href="#" class="enlace-logo">PureStream</a></div>
+      <nav class="menu-principal">
+        <a href="#" class="enlace activo">Inicio</a>
+        <a href="#" class="enlace">Películas</a>
+        <a href="#" class="enlace">Series</a>
+      </nav>
+      <div class="acciones-usuario">
+        <span class="material-symbols-outlined">search</span>
+        <div class="avatar"></div>
+      </div>
+    </header>
+
+    <main class="contenedor-principal">
+      <section class="banner-hero">
+        <div class="capa-oscura"></div>
+        <div class="info-hero">
+          <span class="etiqueta">TENDENCIA</span>
+          <h1 class="titulo-pelicula">QUANTUM VOID</h1>
+          <p class="descripcion">
+            En un mundo donde los recuerdos son moneda de cambio...
+          </p>
+          <button class="boton-reproducir">
+            <span class="material-symbols-outlined">play_arrow</span> Ver Ahora
+          </button>
+        </div>
+      </section>
+
+      <section class="seccion-peliculas">
+        <h2 class="subtitulo">Originales de PureStream</h2>
+        <div class="rejilla-peliculas">
+          <div class="tarjeta-pelicula">
+            <img src="https://picsum.photos/seed/p1/400/600" alt="Poster" />
+            <div class="info-tarjeta"><span>Neon Pulse</span></div>
+          </div>
+        </div>
+      </section>
+    </main>
   </body>
-  <script src="app.js"></script>
 </html>
