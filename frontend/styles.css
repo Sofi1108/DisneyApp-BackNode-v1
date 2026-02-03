@@ -123,7 +123,6 @@ body {
 .portada-pelicula {
   position: relative;
   overflow: hidden;
-  cursor: pointer;
   border-radius: var(--curva);
 }
 
@@ -139,6 +138,7 @@ body {
 
 .tarjeta-pelicula {
   transition: all 0.5s ease;
+  cursor: pointer;
 }
 
 .tarjeta-pelicula:hover {
