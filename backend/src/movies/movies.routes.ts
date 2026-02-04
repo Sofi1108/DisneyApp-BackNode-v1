@@ -7,15 +7,16 @@ export function createMovieRouter(db: Db) {
   // 1. Obtener todas las películas
   r.get("/", (_req: Request, res: Response) => {
     db.all(
-      "SELECT titulo FROM PELICULA ORDER BY titulo ASC",
+      "SELECT * FROM PELICULA ORDER BY titulo ASC",
       [],
-      (err: any, rows: any[]) => { // Usamos any para evitar conflictos de tipos
+      (err: any, rows: any[]) => {
+        // Usamos any para evitar conflictos de tipos
         if (err) {
           res.status(500).json({ ok: false, error: "database_error" });
           return;
         }
         res.json({ ok: true, movies: rows });
-      }
+      },
     );
   });
 

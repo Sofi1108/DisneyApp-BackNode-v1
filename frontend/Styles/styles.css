@@ -1,0 +1,242 @@
+/* VARIABLES: Cambia esto y cambiará toda la web */
+:root {
+  --violeta-principal: #7f0df2;
+  --negro-profundo: #0a080d;
+  --gris-texto: #ab9cba;
+  --blanco: #ffffff;
+  --curva: 16px;
+}
+
+body {
+  background-color: var(--negro-profundo);
+  color: var(--blanco);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  margin: 0;
+}
+
+/* NAVEGACIÓN */
+.barra-navegacion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5%;
+  background: linear-gradient(to bottom, rgba(10, 8, 13, 1), transparent);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Alineación de los iconos en la cabecera */
+.acciones-usuario {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* --- SECCIÓN ACCIONES USUARIO (Lupa + Avatar) --- */
+.acciones-usuario {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.acciones-usuario .enlace {
+  display: flex;
+  align-items: center;
+  margin-right: 0;
+}
+
+/* --- CONTENEDOR DEL AVATAR --- */
+.contenedor-avatar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  /* Eliminamos paddings/margins extra que causan huecos */
+}
+
+/* --- EL MENÚ DESPLEGABLE --- */
+.menu-desplegable {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #1a161f;
+  border: 1px solid var(--violeta-principal);
+  border-radius: 8px;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0; /* Mata el hueco gris del navegador */
+  min-width: 160px;
+  z-index: 100;
+}
+
+/* El puente invisible para que no se cierre al bajar el ratón */
+.menu-desplegable::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: 0;
+  width: 100%;
+  height: 15px;
+  background: transparent;
+}
+
+/* Mostrar al pasar el ratón */
+.contenedor-avatar:hover .menu-desplegable {
+  display: block;
+}
+
+/* --- ESTILOS INTERNOS DEL MENÚ --- */
+.menu-desplegable li a {
+  color: var(--blanco);
+  text-decoration: none;
+  padding: 10px 20px;
+  display: block;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+
+.menu-desplegable li a:hover {
+  background-color: var(--violeta-principal);
+}
+
+.menu-desplegable hr {
+  border: 0;
+  border-top: 1px solid #333;
+  margin: 5px 0;
+}
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--violeta-principal);
+}
+
+.enlace-logo {
+  color: var(--violeta-principal);
+  text-decoration: none;
+  margin-right: 20px;
+  font-weight: 600;
+  transition: 0.8s;
+}
+
+.enlace-logo.activo,
+.enlace-logo:hover {
+  color: white;
+}
+
+.enlace {
+  color: var(--gris-texto);
+  text-decoration: none;
+  margin-right: 20px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.enlace.activo,
+.enlace:hover {
+  color: white;
+}
+
+/* HERO SECTION */
+.banner-hero {
+  position: relative;
+  height: 60vh;
+  margin: 0 5%;
+  border-radius: 24px;
+  overflow: hidden;
+  background:
+    url("https://www.sanvalero.es/sites/default/files/Job%20Day_FP_2.jpg")
+      center/cover,
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+}
+
+.capa-oscura {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    var(--negro-profundo) 10%,
+    transparent 70%
+  );
+}
+
+.info-hero {
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+  max-width: 45%;
+}
+
+.titulo-pelicula {
+  font-size: 3.5rem;
+  margin: 10px 0;
+  letter-spacing: -2px;
+}
+
+.descripcion {
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.boton-reproducir {
+  background: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+.boton-reproducir:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px var(--violeta-principal);
+  filter: brightness(1.2);
+}
+
+.texto-boton {
+  color: var(--negro-profundo);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1rem;
+}
+
+/* REJILLA DE PELÍCULAS */
+.seccion-peliculas {
+  padding: 40px 5%;
+}
+
+.rejilla-peliculas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.portada-pelicula {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--curva);
+}
+
+.portada-pelicula img {
+  width: 100%;
+  display: block;
+}
+
+.info-tarjeta {
+  margin-top: 5%;
+  text-align: center;
+}
+
+.tarjeta-pelicula {
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.tarjeta-pelicula:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+}
