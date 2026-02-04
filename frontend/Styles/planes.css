@@ -1,0 +1,463 @@
+:root {
+    --violeta-principal: #7f0df2;
+    --negro-profundo: #0a080d;
+    --gris-texto: #ab9cba;
+    --blanco: #ffffff;
+    --curva: 1rem;
+    /* 16px base */
+}
+
+body {
+    background-color: var(--negro-profundo);
+    color: var(--blanco);
+    font-family: "Plus Jakarta Sans", sans-serif;
+    margin: 0;
+    font-size: 100%;
+    /* Permite que 1rem = 16px de base */
+    overflow-x: hidden;
+}
+
+/* --- NAVEGACIÓN --- */
+.barra-navegacion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background: linear-gradient(to bottom, rgba(10, 8, 13, 1), transparent);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.enlace-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--violeta-principal);
+    text-decoration: none;
+    transition: 0.8s;
+    /* Tu efecto original */
+}
+
+.enlace-logo:hover {
+    color: var(--blanco);
+}
+
+.menu-principal {
+    display: flex;
+    gap: 2rem;
+}
+
+
+/* Responsive: Esconder menú de texto en móvil para evitar colisiones */
+@media (max-width: 48rem) {
+
+    /* 768px */
+    .menu-principal {
+        display: none;
+    }
+}
+
+.enlace {
+    color: var(--gris-texto);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.enlace:hover,
+.enlace.activo {
+    color: var(--blanco);
+}
+
+
+
+/* --- ACCIONES Y MENÚ DESPLEGABLE --- */
+.acciones-usuario {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    min-height: 27.2px;
+    min-width: 67.2px;
+}
+
+.acciones-usuario .enlace {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+}
+
+
+.contenedor-avatar {
+    position: relative;
+    cursor: pointer;
+}
+
+.menu-desplegable {
+    display: none;
+    position: absolute;
+    top: 120%;
+    right: 0;
+    background-color: #1a161f;
+    border: 0.06rem solid var(--violeta-principal);
+    border-radius: 0.7rem;
+    list-style: none;
+    padding: 0.5rem 0;
+    min-width: 11rem;
+    margin: 0;
+    z-index: 100;
+}
+
+.menu-desplegable::before {
+    content: "";
+    position: absolute;
+    top: -1rem;
+    width: 100%;
+    height: 1rem;
+}
+
+.contenedor-avatar:hover .menu-desplegable {
+    display: block;
+}
+
+.menu-desplegable li a {
+    color: var(--blanco);
+    text-decoration: none;
+    padding: 0.7rem 1.2rem;
+    display: block;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.menu-desplegable li a:hover {
+    background: var(--violeta-principal);
+}
+
+.menu-desplegable hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    margin: 0.4rem 0;
+}
+
+.contenedor {
+    width: min(1200px, 100% - 10%);
+    margin: 0 auto;
+}
+
+
+/* =========================
+   INTRODUCCIÓN
+   ========================= */
+.introduccion {
+    text-align: center;
+    padding: 1rem 0 1.5rem;
+}
+
+.introduccion h1 {
+    font-size: clamp(1.8rem, 6vw, 3.2rem);
+    margin: 0 0 0.8rem;
+    letter-spacing: -0.08rem;
+}
+
+.introduccion p {
+    color: var(--gris-texto);
+    font-size: clamp(0.95rem, 2vw, 1.05rem);
+    max-width: 42rem;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* =========================
+   SELECTOR FACTURACIÓN
+   ========================= */
+.selector-facturacion {
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.06rem solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.2rem;
+    padding: 0.4rem;
+    width: min(28rem, 100%);
+    margin: 2rem auto 2.5rem;
+}
+
+.opcion-facturacion {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.opcion-facturacion input {
+    display: none;
+}
+
+.opcion-facturacion span {
+    width: 100%;
+    text-align: center;
+    padding: 0.9rem 0.8rem;
+    border-radius: 0.9rem;
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: var(--gris-texto);
+    transition: 0.25s;
+    position: relative;
+}
+
+.opcion-facturacion input:checked+span {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--blanco);
+}
+
+.etiqueta {
+    position: absolute;
+    top: -0.9rem;
+    right: -0.5rem;
+    background: var(--violeta-principal);
+    color: var(--blanco);
+    font-size: 0.55rem;
+    letter-spacing: 0.12rem;
+    font-weight: 900;
+    padding: 0.25rem 0.55rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+}
+
+/* =========================
+   PLANES (rejilla)
+   ========================= */
+
+.planes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    align-items: stretch;
+    margin: 0;
+    padding: 0;
+}
+
+@media (min-width: 48rem) {
+    .planes {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+@media (min-width: 48rem) {
+    .planes {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Tarjeta */
+.tarjeta-plan {
+    background: rgba(255, 255, 255, 0.03);
+    border: 0.06rem solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.5rem;
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    gap: 1rem;
+}
+
+.tarjeta-plan:hover {
+    transform: translateY(-4px);
+    filter: brightness(1.1);
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Destacado */
+.tarjeta-plan.destacado {
+    border: 0.12rem solid var(--violeta-principal);
+    box-shadow: 0 0 2.5rem rgba(127, 13, 242, 0.25);
+    position: relative;
+}
+
+.recomendado {
+    position: absolute;
+    top: -0.9rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--violeta-principal);
+    color: var(--blanco);
+    font-size: 0.6rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    font-weight: 900;
+    letter-spacing: 0.18rem;
+    text-transform: uppercase;
+}
+
+/* Textos */
+.nombre-plan {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 900;
+    letter-spacing: 0.22rem;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+}
+
+.nombre-plan.principal {
+    color: var(--violeta-principal);
+}
+
+.nombre-plan.acento {
+    color: var(--gris-texto);
+}
+
+.nombre-plan.secundario {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.precio {
+    margin: 0;
+    font-weight: 900;
+    font-size: 2.3rem;
+    letter-spacing: -0.05rem;
+}
+
+.valor-precio {
+    display: inline-block;
+}
+
+.descripcion-plan {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Botones */
+.boton-plan {
+    border: none;
+    border-radius: 0.7rem;
+    padding: 0.9rem 1rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: 0.35s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.08rem;
+    font-size: 0.8rem;
+    background: rgba(255, 255, 255, 0.10);
+    color: var(--blanco);
+}
+
+.boton-plan:hover {
+    transform: scale(1.03);
+}
+
+.boton-plan:active {
+    transform: scale(0.97);
+}
+
+.boton-principal {
+    background: var(--violeta-principal);
+}
+
+.boton-principal:hover {
+    box-shadow: 0 0 1.5rem var(--violeta-principal);
+    filter: brightness(1.15);
+}
+
+.boton-acento {
+    background: var(--gris-texto);
+    color: var(--negro-profundo);
+}
+
+.boton-acento:hover {
+    filter: brightness(1.1);
+}
+
+/* Lista */
+.caracteristicas {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.6rem;
+}
+
+.caracteristicas li {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.separador-plan {
+    border: none;
+    /* Quitamos el estilo por defecto */
+    height: 1px;
+    /* Línea muy fina */
+    background: linear-gradient(to right,
+            transparent,
+            rgba(255, 255, 255, 0.15),
+            transparent);
+    margin: 0.8rem 0;
+    /* Aire arriba y abajo */
+}
+
+
+/* Mensaje final */
+.mensaje-seleccion {
+    margin-top: 2rem;
+    text-align: center;
+    color: var(--gris-texto);
+    font-weight: 700;
+    min-height: 1.2rem;
+}
+
+/* =========================
+   PIE DE PÁGINA
+   ========================= */
+.pie-pagina {
+    padding: 2rem 5%;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.contenedor-pie {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.marca-pie {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.logo-pie {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+.texto-marca {
+    font-weight: 900;
+    color: var(--gris-texto);
+}
+
+.enlaces-pie {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.enlace-pie {
+    color: rgba(255, 255, 255, 0.45);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: 0.3s;
+}
+
+.enlace-pie:hover {
+    color: var(--violeta-principal);
+}
