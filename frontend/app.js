@@ -1,5 +1,5 @@
 const API =
-  "https://urban-bassoon-x5wr49655q6v36q6w-3000.app.github.dev/api/movies";
+  "https://fictional-space-parakeet-97j695975pg29pp-3000.app.github.dev/";
 
 // $data --> variable que de js, se diferencia de las otras variables por el simbolo $
 const $data = document.getElementById("movies");
