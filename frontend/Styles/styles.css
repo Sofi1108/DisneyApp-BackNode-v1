@@ -1,10 +1,9 @@
-/* VARIABLES: Cambia esto y cambiará toda la web */
 :root {
   --violeta-principal: #7f0df2;
   --negro-profundo: #0a080d;
   --gris-texto: #ab9cba;
   --blanco: #ffffff;
-  --curva: 16px;
+  --curva: 1rem; /* 16px base */
 }
 
 body {
@@ -12,143 +11,130 @@ body {
   color: var(--blanco);
   font-family: "Plus Jakarta Sans", sans-serif;
   margin: 0;
+  font-size: 100%; /* Permite que 1rem = 16px de base */
+  overflow-x: hidden;
 }
 
-/* NAVEGACIÓN */
+/* --- NAVEGACIÓN --- */
 .barra-navegacion {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 5%;
+  padding: 1.5rem 5%;
   background: linear-gradient(to bottom, rgba(10, 8, 13, 1), transparent);
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 100;
 }
 
-/* Alineación de los iconos en la cabecera */
+.enlace-logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--violeta-principal);
+  text-decoration: none;
+  transition: 0.8s; /* Tu efecto original */
+}
+
+.enlace-logo:hover {
+  color: var(--blanco);
+}
+
+.menu-principal {
+  display: flex;
+  gap: 2rem;
+}
+
+/* Responsive: Esconder menú de texto en móvil para evitar colisiones */
+@media (max-width: 48rem) {
+  /* 768px */
+  .menu-principal {
+    display: none;
+  }
+}
+
+.enlace {
+  color: var(--gris-texto);
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.enlace:hover,
+.enlace.activo {
+  color: var(--blanco);
+}
+
+/* --- ACCIONES Y MENÚ DESPLEGABLE --- */
 .acciones-usuario {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 1.2rem;
 }
 
-/* --- SECCIÓN ACCIONES USUARIO (Lupa + Avatar) --- */
-.acciones-usuario {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.acciones-usuario .enlace {
-  display: flex;
-  align-items: center;
-  margin-right: 0;
-}
-
-/* --- CONTENEDOR DEL AVATAR --- */
 .contenedor-avatar {
   position: relative;
-  display: flex;
-  align-items: center;
   cursor: pointer;
-  /* Eliminamos paddings/margins extra que causan huecos */
 }
 
-/* --- EL MENÚ DESPLEGABLE --- */
 .menu-desplegable {
   display: none;
   position: absolute;
   top: 100%;
   right: 0;
   background-color: #1a161f;
-  border: 1px solid var(--violeta-principal);
-  border-radius: 8px;
+  border: 0.06rem solid var(--violeta-principal);
+  border-radius: 0.5rem;
   list-style: none;
-  padding: 10px 0;
-  margin: 0; /* Mata el hueco gris del navegador */
-  min-width: 160px;
+  padding: 0.5rem 0;
+  min-width: 10rem;
+  margin: 0;
   z-index: 100;
 }
 
-/* El puente invisible para que no se cierre al bajar el ratón */
+/* El puente invisible para evitar que se cierre */
 .menu-desplegable::before {
   content: "";
   position: absolute;
-  top: -15px;
-  left: 0;
+  top: -1rem;
   width: 100%;
-  height: 15px;
-  background: transparent;
+  height: 1rem;
 }
 
-/* Mostrar al pasar el ratón */
 .contenedor-avatar:hover .menu-desplegable {
   display: block;
 }
 
-/* --- ESTILOS INTERNOS DEL MENÚ --- */
 .menu-desplegable li a {
   color: var(--blanco);
   text-decoration: none;
-  padding: 10px 20px;
+  padding: 0.7rem 1.5rem;
   display: block;
   font-size: 0.9rem;
-  transition: background 0.3s;
-}
-
-.menu-desplegable li a:hover {
-  background-color: var(--violeta-principal);
-}
-
-.menu-desplegable hr {
-  border: 0;
-  border-top: 1px solid #333;
-  margin: 5px 0;
-}
-.logo {
-  font-size: 24px;
-  font-weight: 800;
-  color: var(--violeta-principal);
-}
-
-.enlace-logo {
-  color: var(--violeta-principal);
-  text-decoration: none;
-  margin-right: 20px;
-  font-weight: 600;
-  transition: 0.8s;
-}
-
-.enlace-logo.activo,
-.enlace-logo:hover {
-  color: white;
-}
-
-.enlace {
-  color: var(--gris-texto);
-  text-decoration: none;
-  margin-right: 20px;
-  font-weight: 600;
   transition: 0.3s;
 }
 
-.enlace.activo,
-.enlace:hover {
-  color: white;
+.menu-desplegable li a:hover {
+  background: var(--violeta-principal);
 }
 
-/* HERO SECTION */
+/* --- HERO SECTION --- */
 .banner-hero {
   position: relative;
-  height: 60vh;
+  height: 65vh; /* Altura basada en el viewport */
   margin: 0 5%;
-  border-radius: 24px;
+  border-radius: 1.5rem;
   overflow: hidden;
-  background:
-    url("https://www.sanvalero.es/sites/default/files/Job%20Day_FP_2.jpg")
-      center/cover,
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  background: url("https://www.sanvalero.es/sites/default/files/Job%20Day_FP_2.jpg")
+    center/cover;
+}
+
+@media (max-width: 40rem) {
+  /* 640px */
+  .banner-hero {
+    height: 50vh;
+    margin: 0;
+    border-radius: 0;
+  }
 }
 
 .capa-oscura {
@@ -157,7 +143,7 @@ body {
   background: linear-gradient(
     to right,
     var(--negro-profundo) 10%,
-    transparent 70%
+    transparent 85%
   );
 }
 
@@ -165,78 +151,110 @@ body {
   position: absolute;
   bottom: 10%;
   left: 5%;
-  max-width: 45%;
+  max-width: 85%;
 }
 
 .titulo-pelicula {
-  font-size: 3.5rem;
-  margin: 10px 0;
-  letter-spacing: -2px;
+  font-size: clamp(1.8rem, 8vw, 3.5rem); /* Tamaño fluido */
+  margin: 0.5rem 0;
+  letter-spacing: -0.1rem;
 }
 
 .descripcion {
+  font-size: clamp(0.85rem, 2vw, 1rem);
   line-height: 1.6;
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
+  max-width: 35rem;
 }
 
 .boton-reproducir {
-  background: white;
+  background: var(--blanco);
   border: none;
-  padding: 12px 30px;
-  border-radius: 8px;
+  padding: 0.8rem 2rem;
+  border-radius: 0.5rem;
   font-weight: 800;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.6rem;
   cursor: pointer;
-  transition: transform 0.4s ease;
+  transition: 0.4s ease;
 }
 
 .boton-reproducir:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 20px var(--violeta-principal);
+  transform: scale(1.05);
+  box-shadow: 0 0 1.5rem var(--violeta-principal);
   filter: brightness(1.2);
 }
 
 .texto-boton {
   color: var(--negro-profundo);
-  font-family: "Plus Jakarta Sans", sans-serif;
-  font-size: 1rem;
 }
 
-/* REJILLA DE PELÍCULAS */
+/* --- CARRUSEL RESPONSIVE --- */
 .seccion-peliculas {
-  padding: 40px 5%;
+  padding: 3rem 5%;
+}
+
+.subtitulo {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.contenedor-carrusel {
+  width: 100%;
+  overflow: hidden;
 }
 
 .rejilla-peliculas {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 2rem;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
 }
 
+.rejilla-peliculas::-webkit-scrollbar {
+  display: none;
+}
+
+.tarjeta-pelicula {
+  flex: 0 0 11rem; /* Ancho base en móvil (~176px) */
+  scroll-snap-align: start;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+
+@media (min-width: 48rem) {
+  /* Tablet/PC */
+  .tarjeta-pelicula {
+    flex: 0 0 14rem;
+  } /* ~224px */
+}
+
+.tarjeta-pelicula:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+}
+
+/* FIJAR TAMAÑO DE PORTADA */
 .portada-pelicula {
-  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3; /* Proporción de poster fija */
   overflow: hidden;
   border-radius: var(--curva);
 }
 
 .portada-pelicula img {
   width: 100%;
+  height: 100%;
+  object-fit: cover; /* Evita estiramiento */
   display: block;
 }
 
 .info-tarjeta {
-  margin-top: 5%;
+  margin-top: 0.8rem;
   text-align: center;
-}
-
-.tarjeta-pelicula {
-  transition: all 0.5s ease;
-  cursor: pointer;
-}
-
-.tarjeta-pelicula:hover {
-  transform: scale(1.05);
-  filter: brightness(1.2);
+  font-size: 0.9rem;
 }

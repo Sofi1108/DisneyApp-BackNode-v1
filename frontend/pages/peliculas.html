@@ -13,7 +13,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../Styles/styles.css" />
-    <link rel="icon" href="Img/icono.png" type="image/png" />
+    <link rel="icon" href="../Img/icono.png" type="image/png" />
   </head>
   <body>
     <header class="barra-navegacion">
@@ -22,14 +22,24 @@
       </div>
       <nav class="menu-principal">
         <a href="index.html" class="enlace">Inicio</a>
-        <a href="#" class="enlace activo">Películas</a>
+        <a href="peliculas.html" class="enlace activo">Películas</a>
         <a href="series.html" class="enlace">Series</a>
       </nav>
       <div class="acciones-usuario">
-        <span class="material-symbols-outlined"
-          ><a href="#" class="enlace">search</a></span
-        >
-        <div class="avatar"></div>
+        <span class="material-symbols-outlined">
+          <a href="#" class="enlace">search</a>
+        </span>
+        <div class="contenedor-avatar">
+          <span class="material-symbols-outlined">
+            <a href="#" class="enlace avatar-icon">account_circle</a>
+          </span>
+          <ul class="menu-desplegable">
+            <li><a href="login.html">Mi Perfil</a></li>
+            <li><a href="planes.html">Suscripción</a></li>
+            <li><hr /></li>
+            <li><a href="#" class="cerrar-sesion">Cerrar Sesión</a></li>
+          </ul>
+        </div>
       </div>
     </header>
 
@@ -38,11 +48,9 @@
         <div class="capa-oscura"></div>
         <div class="info-hero">
           <span class="etiqueta">TENDENCIA</span>
-          <h1 class="titulo-pelicula">JOB DAY</h1>
+          <h1 class="titulo-pelicula">GFT Technologies</h1>
           <p class="descripcion">
-            El plan es perfecto: 17 de febrero, 09:00 AM. El objetivo: tu futuro
-            profesional. Sin margen de error, sin mirar atrás. La mayor
-            oportunidad de la temporada acaba de empezar
+            Others create hype. We create impact. Let’s Go Beyond the Hype_
           </p>
           <button class="boton-reproducir">
             <span class="material-symbols-outlined">play_arrow</span>
@@ -53,15 +61,11 @@
 
       <section class="seccion-peliculas">
         <h2 class="subtitulo">Originales de PureStream</h2>
-        <div class="rejilla-peliculas">
-          <div class="tarjeta-pelicula">
-            <div class="portada-pelicula">
-              <img src="https://picsum.photos/seed/p1/400/600" alt="Poster" />
-            </div>
-            <div class="info-tarjeta"><span>Neon Pulse</span></div>
-          </div>
+        <div class="contenedor-carrusel">
+          <div class="rejilla-peliculas"></div>
         </div>
       </section>
     </main>
+    <script src="../Scripts/app.js"></script>
   </body>
 </html>
