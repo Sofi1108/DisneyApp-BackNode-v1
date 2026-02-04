@@ -1,5 +1,5 @@
 const API =
-  "https://fictional-space-parakeet-97j695975pg29pp-3000.app.github.dev/api/movies"; // Ruta corregida
+  "https://fantastic-invention-jj5rg46jjg6gfq7xg-3000.app.github.dev/api/movies"; // Ruta corregida
 
 const $contenedor = document.querySelector(".rejilla-peliculas");
 
