@@ -1,13 +1,15 @@
 import sqlite3 from "sqlite3";
 
-export type Db = sqlite3.Database;
+// ESTA LÍNEA ES LA CLAVE:
+export type Db = sqlite3.Database; 
 
-export function createDb() {
+export function createDb(): Db {
     sqlite3.verbose();
-
-
-    // Reutilizable: lo centralizamos aquí
     const filename = "data/disney.sqlite3";
-    return new sqlite3.Database(filename);
+    const db = new sqlite3.Database(filename, (err) => {
+        if (!err) {
+            db.run("PRAGMA foreign_keys = ON;");
+        }
+    });
+    return db;
 }
-
