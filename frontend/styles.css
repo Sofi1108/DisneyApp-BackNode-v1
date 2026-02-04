@@ -65,7 +65,10 @@ body {
   margin: 0 5%;
   border-radius: 24px;
   overflow: hidden;
-  background: url("https://picsum.photos/id/10/1200/800") center/cover;
+  background:
+    url("https://www.sanvalero.es/sites/default/files/Job%20Day_FP_2.jpg")
+      center/cover,
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
 }
 
 .capa-oscura {
@@ -82,13 +85,18 @@ body {
   position: absolute;
   bottom: 10%;
   left: 5%;
-  max-width: 450px;
+  max-width: 45%;
 }
 
 .titulo-pelicula {
   font-size: 3.5rem;
   margin: 10px 0;
   letter-spacing: -2px;
+}
+
+.descripcion {
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
 .boton-reproducir {
@@ -107,6 +115,24 @@ body {
 .boton-reproducir:hover {
   transform: scale(1.02);
   box-shadow: 0 0 20px var(--violeta-principal);
+  filter: brightness(1.2);
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
+}
+.filled {
+  font-variation-settings: "FILL" 1;
+}
+
+.texto-boton {
+  color: var(--negro-profundo);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1rem;
 }
 
 /* REJILLA DE PELÍCULAS */
