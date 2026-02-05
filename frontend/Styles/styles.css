@@ -32,7 +32,7 @@ body {
   font-weight: 800;
   color: var(--violeta-principal);
   text-decoration: none;
-  transition: 0.8s; /* Tu efecto original */
+  transition: 0.8s; 
 }
 
 .enlace-logo:hover {
@@ -44,7 +44,6 @@ body {
   gap: 2rem;
 }
 
-/* Responsive: Esconder menú de texto en móvil para evitar colisiones */
 @media (max-width: 48rem) {
   /* 768px */
   .menu-principal {
@@ -64,7 +63,6 @@ body {
   color: var(--blanco);
 }
 
-/* --- ACCIONES Y MENÚ DESPLEGABLE --- */
 .acciones-usuario {
   display: flex;
   align-items: center;
@@ -91,7 +89,6 @@ body {
   z-index: 100;
 }
 
-/* El puente invisible para evitar que se cierre */
 .menu-desplegable::before {
   content: "";
   position: absolute;
@@ -117,10 +114,9 @@ body {
   background: var(--violeta-principal);
 }
 
-/* --- HERO SECTION --- */
 .banner-hero {
   position: relative;
-  height: 65vh; /* Altura basada en el viewport */
+  height: 65vh;
   margin: 0 5%;
   border-radius: 1.5rem;
   overflow: hidden;
@@ -129,7 +125,6 @@ body {
 }
 
 @media (max-width: 40rem) {
-  /* 640px */
   .banner-hero {
     height: 50vh;
     margin: 0;
@@ -155,7 +150,7 @@ body {
 }
 
 .titulo-pelicula {
-  font-size: clamp(1.8rem, 8vw, 3.5rem); /* Tamaño fluido */
+  font-size: clamp(1.8rem, 8vw, 3.5rem);
   margin: 0.5rem 0;
   letter-spacing: -0.1rem;
 }
@@ -190,7 +185,60 @@ body {
   color: var(--negro-profundo);
 }
 
-/* --- CARRUSEL RESPONSIVE --- */
+
+.dropdown-categorias {
+  position: relative;
+  display: flex;
+  justify-content: center; 
+  margin: 2rem 0;         
+  z-index: 50;
+}
+
+
+.boton-categoria {
+  background: var(--violeta-principal); 
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: 0.3s;
+}
+
+.dropdown-categorias:hover .menu-desplegable {
+  display: block;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%); 
+}
+
+.menu-desplegable.scrollable {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid var(--violeta-principal);
+  background-color: #1a161f;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.menu-desplegable li a.activo {
+    background-color: var(--violeta-principal);
+    color: var(--blanco);
+    font-weight: 800;
+    border-left: 4px solid var(--blanco); 
+}
+
+.menu-desplegable.scrollable {
+    max-height: 250px;
+    overflow-y: auto;
+  
+    scrollbar-width: thin;
+    scrollbar-color: var(--violeta-principal) #1a161f;
+}
+
 .seccion-peliculas {
   padding: 3rem 5%;
 }
@@ -222,7 +270,7 @@ body {
 }
 
 .tarjeta-pelicula {
-  flex: 0 0 11rem; /* Ancho base en móvil (~176px) */
+  flex: 0 0 11rem;
   scroll-snap-align: start;
   transition: 0.5s ease;
   cursor: pointer;

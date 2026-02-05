@@ -58,19 +58,30 @@ async function LoadMovies(categoriaID = null) {
 
 // Inicializar
 LoadMovies();
-
-// Event Listeners para Categorías
 document.addEventListener("DOMContentLoaded", () => {
-  const categoryLinks = document.querySelectorAll(
-    ".dropdown-categorias .menu-desplegable a",
-  );
+  // Cambiamos a .dropdown-categorias button para que encuentre el tuyo
+  const categoryLinks = document.querySelectorAll(".dropdown-categorias .menu-desplegable a");
+  const botonTexto = document.querySelector(".dropdown-categorias .boton-reproducir");
 
   categoryLinks.forEach((link) => {
-    link.addEventListener("click", (e) => {
+    link.addEventListener("click", async (e) => {
       e.preventDefault();
-      const categoriaID = e.currentTarget.getAttribute("data-categoria");
-      console.log("Filtrando por categoría:", categoriaID);
-      LoadMovies(categoriaID);
+      e.stopPropagation(); // Evita interferencias
+
+      categoryLinks.forEach(l => l.classList.remove("activo"));
+      link.classList.add("activo");
+
+      const categoriaID = link.getAttribute("data-categoria");
+
+      const icono = '<span class="material-symbols-outlined">expand_more</span>';
+      if (!categoriaID) {
+        botonTexto.innerHTML = `Categorías ${icono}`;
+      } else {
+        botonTexto.innerHTML = `${link.textContent} ${icono}`;
+      }
+
+      console.log("Filtrando por:", categoriaID);
+      await LoadMovies(categoriaID);
     });
   });
 });
