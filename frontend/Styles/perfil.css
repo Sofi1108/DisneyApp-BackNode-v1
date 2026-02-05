@@ -1,0 +1,128 @@
+/* Contenedor Principal */
+.contenedor-perfil {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 5%;
+}
+
+/* Sección de Usuario */
+.seccion-usuario {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding: 3rem;
+    background: linear-gradient(135deg, #1a161f 0%, #0a080d 100%);
+    border-radius: 1.5rem;
+    border: 1px solid rgba(127, 13, 242, 0.2);
+    margin-bottom: 2rem;
+}
+
+.avatar-grande {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-grande .material-symbols-outlined {
+    font-size: 8rem;
+    color: var(--violeta-principal);
+}
+
+.boton-editar-foto {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: var(--violeta-principal);
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nombre-usuario {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0;
+}
+
+.email-usuario {
+    color: var(--gris-texto);
+    margin-bottom: 1.5rem;
+}
+
+.badges {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.badge-premium {
+    background: var(--violeta-principal);
+    padding: 0.3rem 0.8rem;
+    border-radius: 2rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.badge-antiguedad {
+    border: 1px solid var(--gris-texto);
+    padding: 0.3rem 0.8rem;
+    border-radius: 2rem;
+    font-size: 0.75rem;
+    color: var(--gris-texto);
+}
+
+/* Cards de Estadísticas */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    background: #1a161f;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    text-align: center;
+    border-bottom: 3px solid var(--violeta-principal);
+}
+
+.stat-card h3 {
+    font-size: 1.8rem;
+    margin: 0;
+    color: var(--blanco);
+}
+
+.stat-card p {
+    color: var(--gris-texto);
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+}
+
+/* Rejilla de contenido en perfil */
+.rejilla-perfil {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .seccion-usuario {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+    }
+    
+    .badges {
+        justify-content: center;
+    }
+}
