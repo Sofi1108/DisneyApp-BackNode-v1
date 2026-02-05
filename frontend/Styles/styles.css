@@ -21,7 +21,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 5%;
-  background: linear-gradient(to bottom, rgba(10, 8, 13, 1), transparent);
+  background: linear-gradient(to bottom, rgba(10, 8, 13, 1) 65%, transparent);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -212,9 +212,9 @@ body {
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
-  -webkit-overflow-scrolling: touch; 
-  scrollbar-width: none; 
-  padding: 1rem 0; 
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 1rem 0;
 }
 
 .rejilla-peliculas::-webkit-scrollbar {
@@ -240,10 +240,9 @@ body {
   transform: scale(1.05);
   filter: brightness(1.2);
   .portada-pelicula {
-      box-shadow: #ffffff 0 0 0.5em;
+    box-shadow: #ffffff 0 0 0.5em;
   }
 }
-
 
 /* FIJAR TAMAÑO DE PORTADA */
 .portada-pelicula {
@@ -264,4 +263,62 @@ body {
   margin-top: 0.8rem;
   text-align: center;
   font-size: 0.9rem;
+}
+.pie-pagina {
+  padding: 2rem 5%;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.contenedor-pie {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.marca-pie {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.logo-pie {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.texto-marca {
+  font-weight: 900;
+  color: var(--gris-texto);
+}
+
+.enlaces-pie {
+  display: flex;
+  flex-direction: column; /* La clave para el orden vertical */
+  gap: 0.8rem; /* Espaciado entre cada enlace */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  min-width: 10rem;
+  text-decoration: none;
+}
+
+.enlaces-pie li a {
+  display: block;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+/* Mantén tus estilos de color y hover igual */
+.enlace-pie {
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 900;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.enlace-pie:hover {
+  color: var(--violeta-principal);
 }
