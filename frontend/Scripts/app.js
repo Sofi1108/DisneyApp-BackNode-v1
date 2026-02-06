@@ -1,7 +1,7 @@
 const API =
   "https://fantastic-invention-jj5rg46jjg6gfq7xg-3000.app.github.dev/api/movies";
 
-// Buscamos el contenedor de forma más flexible para que funcione en todas las páginas
+// Selectores de contenedores
 const getContenedor = () => {
   return (
     document.querySelector(".seccion-resultados #contenedor-resultados") ||
@@ -9,18 +9,25 @@ const getContenedor = () => {
     document.querySelector(".rejilla-peliculas")
   );
 };
-
 const $contenedorRecomendados = document.querySelector(
   ".seccion-peliculas .rejilla-peliculas",
 );
 
-let categoriaActual = null;
+// Estado global de filtros
+let filtroCategoriaActual = null;
+let filtroSagaActual = null;
 
 /**
- * Carga y filtra películas según la página, categoría y orden
+ * Función principal: Carga, Filtra y Ordena el contenido
  */
-async function LoadMovies(categoriaID = null, ordenAño = "desc") {
-  categoriaActual = categoriaID;
+async function LoadMovies(
+  categoriaID = null,
+  ordenAño = "desc",
+  sagaID = null,
+) {
+  filtroCategoriaActual = categoriaID;
+  filtroSagaActual = sagaID;
+
   const $contenedorPrincipal = getContenedor();
 
   try {
@@ -33,21 +40,28 @@ async function LoadMovies(categoriaID = null, ordenAño = "desc") {
     const esPaginaSeries = path.includes("series.html");
     const esPaginaPeliculas = path.includes("peliculas.html");
 
-    // 1. Filtrar por tipo (Serie/Peli) y categoría
+    // 1. FILTRADO MULTIPLE (Tipo + Categoría + Saga)
     let filtrados = movies.filter((item) => {
+      // Filtro por página (Serie vs Película)
       let pasaTipo =
         esHome ||
         (esPaginaSeries ? item.SeriePelicula === 0 : item.SeriePelicula === 1);
+
+      // Filtro por categoría (Género)
       let pasaCategoria = !categoriaID || item.categoria_id == categoriaID;
-      return pasaTipo && pasaCategoria;
+
+      // Filtro por Saga (Columna 'saga' de la base de datos)
+      let pasaSaga = !sagaID || item.saga == sagaID;
+
+      return pasaTipo && pasaCategoria && pasaSaga;
     });
 
-    // 2. Ordenar por año
+    // 2. ORDENACIÓN POR AÑO
     filtrados.sort((a, b) => {
       return ordenAño === "desc" ? b.año - a.año : a.año - b.año;
     });
 
-    // 3. Función para generar HTML (CON LOGICA DE REPRODUCTOR)
+    // 3. GENERADOR DE HTML (Incluye link al Reproductor)
     const renderHTML = (lista) => {
       return lista
         .map(
@@ -66,13 +80,13 @@ async function LoadMovies(categoriaID = null, ordenAño = "desc") {
         .join("");
     };
 
-    // 4. Renderizar en el contenedor principal
+    // 4. INYECTAR EN EL HTML
     if ($contenedorPrincipal) {
       $contenedorPrincipal.innerHTML = renderHTML(filtrados);
     }
 
-    // 5. Renderizar Recomendados (si no hay filtro activo)
-    if ($contenedorRecomendados && !categoriaID) {
+    // Renderizado de recomendados (solo si no hay filtros activos)
+    if ($contenedorRecomendados && !categoriaID && !sagaID) {
       const recomendados = movies
         .filter(
           (item) =>
@@ -83,50 +97,76 @@ async function LoadMovies(categoriaID = null, ordenAño = "desc") {
         )
         .sort(() => 0.5 - Math.random())
         .slice(0, 10);
-
       $contenedorRecomendados.innerHTML = renderHTML(recomendados);
     }
   } catch (error) {
-    console.error("Error cargando pelis:", error);
+    console.error("Error en LoadMovies:", error);
     if ($contenedorPrincipal)
-      $contenedorPrincipal.innerHTML = "<p>Error al cargar el contenido.</p>";
+      $contenedorPrincipal.innerHTML =
+        "<p>Error al conectar con la base de datos.</p>";
   }
 }
 
-// Exportar funciones al objeto window para que year.js pueda verlas
+// Exportar funciones para que year.js y otros scripts externos las vean
 window.LoadMovies = LoadMovies;
-window.getCategoriaActual = () => categoriaActual;
+window.getCategoriaActual = () => filtroCategoriaActual;
+window.getSagaActual = () => filtroSagaActual;
 
+/**
+ * Inicialización de Eventos al cargar el DOM
+ */
 document.addEventListener("DOMContentLoaded", () => {
-  // Carga inicial
   LoadMovies();
 
-  // Eventos para los enlaces de categorías
-  const categoryLinks = document.querySelectorAll(".menu-desplegable a");
-  const botonTexto = document.querySelector(".boton-filtro-genero");
+  // Eventos para CATEGORÍAS (Géneros)
+  const categoryLinks = document.querySelectorAll(
+    ".dropdown-categorias .menu-desplegable a",
+  );
+  const botonGeneroTexto = document.querySelector(".boton-filtro-genero");
 
   categoryLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
-      // Solo actuar si tiene data-categoria (evita errores con 'Cerrar Sesión')
       if (link.hasAttribute("data-categoria")) {
         e.preventDefault();
         const catId = link.getAttribute("data-categoria");
 
-        // Actualizar texto del botón si existe
-        if (botonTexto && !link.closest(".acciones-usuario")) {
-          botonTexto.innerHTML = `${link.textContent} <span class="material-symbols-outlined">expand_more</span>`;
+        if (botonGeneroTexto) {
+          botonGeneroTexto.innerHTML = `${link.textContent} <span class="material-symbols-outlined">expand_more</span>`;
         }
 
-        // Mantener el orden de año actual al filtrar
         const btnYear = document.getElementById("btn-ordenar-año");
         const orden = btnYear ? btnYear.getAttribute("data-orden") : "desc";
 
-        LoadMovies(catId, orden);
+        LoadMovies(catId, orden, filtroSagaActual);
       }
     });
   });
 
-  // Efecto visual de la barra de navegación al hacer scroll
+  // Eventos para SAGAS
+  const sagaLinks = document.querySelectorAll(
+    ".dropdown-sagas .menu-desplegable a",
+  );
+  const botonSagaTexto = document.querySelector(".boton-filtro-saga");
+
+  sagaLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      if (link.hasAttribute("data-saga")) {
+        e.preventDefault();
+        const sId = link.getAttribute("data-saga");
+
+        if (botonSagaTexto) {
+          botonSagaTexto.innerHTML = `${link.textContent} <span class="material-symbols-outlined">expand_more</span>`;
+        }
+
+        const btnYear = document.getElementById("btn-ordenar-año");
+        const orden = btnYear ? btnYear.getAttribute("data-orden") : "desc";
+
+        LoadMovies(filtroCategoriaActual, orden, sId);
+      }
+    });
+  });
+
+  // Efecto visual Navbar
   const nav = document.querySelector(".barra-navegacion");
   window.addEventListener("scroll", () => {
     if (window.scrollY > 50) {
