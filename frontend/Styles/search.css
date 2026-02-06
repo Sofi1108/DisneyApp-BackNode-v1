@@ -1,0 +1,90 @@
+/* --- CONTENEDOR DE BÚSQUEDA --- */
+.contenedor-busqueda {
+  padding: 2rem 5%;
+  display: flex;
+  justify-content: center; /* Centra la barra horizontalmente */
+  align-items: center;
+  flex-grow: 1; /* Permite que ocupe el espacio entre el logo y el avatar */
+  background: transparent;
+}
+
+.barra-busqueda-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 500px; /* Tamaño ideal para que no sea excesivamente larga */
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05); /* Fondo sutil estilo moderno */
+  border-radius: 2rem; /* Bordes redondeados */
+  border: 1px solid rgba(171, 156, 186, 0.3);
+  transition: all 0.3s ease;
+  padding: 0 1rem;
+}
+
+.barra-busqueda-wrapper:focus-within {
+  border-color: var(--violeta-principal);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(127, 13, 242, 0.2);
+}
+
+.icono-busqueda {
+  color: var(--gris-texto);
+  font-size: 1.4rem;
+  margin-right: -0.5rem; /* Ajuste para el input */
+}
+
+#input-busqueda {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  color: var(--blanco);
+  font-family: inherit;
+  outline: none;
+}
+
+#input-busqueda::placeholder {
+  color: rgba(171, 156, 186, 0.6);
+}
+
+.limpiar-busqueda {
+  background: transparent;
+  border: none;
+  color: var(--gris-texto);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.limpiar-busqueda:hover {
+  opacity: 1;
+  color: var(--violeta-principal);
+}
+
+.seccion-resultados {
+  padding: 0 5% 5rem;
+}
+
+.subtitulo-busqueda {
+  font-size: 1.1rem;
+  color: var(--gris-texto);
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.seccion-resultados .rejilla-peliculas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 2rem 1.2rem;
+  overflow-x: hidden; /* Evitamos el scroll horizontal del index */
+}
+
+@media (min-width: 1024px) {
+  .seccion-resultados .rejilla-peliculas {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}

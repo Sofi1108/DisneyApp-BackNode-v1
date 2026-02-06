@@ -6,27 +6,49 @@ export function createMovieRouter(db: Db) {
 
   // 1. Obtener todas las películas
   r.get("/", (_req: Request, res: Response) => {
-    db.all(
-      "SELECT * FROM PELICULA ORDER BY titulo ASC",
-      [],
-      (err: any, rows: any[]) => {
-        // Usamos any para evitar conflictos de tipos
-        if (err) {
-          res.status(500).json({ ok: false, error: "database_error" });
-          return;
-        }
-        res.json({ ok: true, movies: rows });
-      },
-    );
+    db.all("SELECT * FROM PELICULA", [], (err: any, rows: any[]) => {
+      if (err) {
+        res.status(500).json({ ok: false, error: "database_error" });
+        return;
+      }
+      res.json({ ok: true, movies: rows });
+    });
   });
 
-  // 2. RUTA DINÁMICA
+  // 2. BUSCADOR
+  r.get("/search/q", (req: Request, res: Response) => {
+    const query = req.query.query;
+
+    if (!query) {
+      res.json({ ok: true, movies: [] });
+      return;
+    }
+
+    const sql = `
+      SELECT p.*, c.nombreCat 
+      FROM PELICULA p
+      JOIN CATEGORIA c ON p.categoria_id = c.id
+      WHERE p.titulo LIKE ? 
+      OR c.nombreCat LIKE ?
+    `;
+
+    const searchTerm = `%${query}%`;
+
+    db.all(sql, [searchTerm, searchTerm], (err: any, rows: any[]) => {
+      if (err) {
+        res.status(500).json({ ok: false, error: "database_error" });
+        return;
+      }
+      res.json({ ok: true, movies: rows });
+    });
+  });
+
+  // 3. RUTA DINÁMICA
   r.get("/:categoryName", (req: Request, res: Response) => {
     const { categoryName } = req.params;
 
     const sql = `
-      SELECT p.titulo 
-      FROM PELICULA p
+      SELECT p.* FROM PELICULA p
       JOIN CATEGORIA c ON p.categoria_id = c.id
       WHERE c.nombreCat = ?
     `;
