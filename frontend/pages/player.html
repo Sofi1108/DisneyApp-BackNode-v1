@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reproductor | PureStream</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../Styles/styles.css" />
+    <link rel="stylesheet" href="../Styles/player.css" />
+    <link rel="icon" href="../Img/icono.png" type="image/png" />
+  </head>
+
+  <body>
+    <header class="barra-navegacion">
+      <div class="logo">
+        <a href="index.html" class="enlace-logo">PureStream</a>
+      </div>
+      <nav class="menu-principal">
+        <a href="index.html" class="enlace">Inicio</a>
+        <a href="peliculas.html" class="enlace">Películas</a>
+        <a href="series.html" class="enlace">Series</a>
+      </nav>
+      <div class="acciones-usuario">
+        <span class="material-symbols-outlined">
+          <a href="search.html" class="enlace">search</a>
+        </span>
+        <div class="contenedor-avatar">
+          <span class="material-symbols-outlined">
+            <a href="#" class="enlace avatar-icon">account_circle</a>
+          </span>
+          <ul class="menu-desplegable">
+            <li><a href="../User/profile.html">Mi Perfil</a></li>
+            <li><a href="../User/planes.html">Suscripción</a></li>
+            <li>
+              <hr />
+            </li>
+            <li>
+              <a href="../User/login.html" class="cerrar-sesion"
+                >Cerrar Sesión</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main class="contenedor-player">
+      <!-- El video wrapper estará inicialmente oculto o se mostrará al dar a Reproducir -->
+      <div id="video-overlay" class="video-overlay" style="display: none">
+        <div class="video-wrapper">
+          <iframe
+            id="video-player"
+            width="100%"
+            height="100%"
+            src=""
+            title="Reproductor de video"
+            frameborder="0"
+            allow="
+              accelerometer;
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              gyroscope;
+              picture-in-picture;
+              web-share;
+            "
+            allowfullscreen
+          >
+          </iframe>
+          <button id="cerrar-video" class="cerrar-video">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Sección de Detalle (Hero) -->
+      <section class="detalle">
+        <div class="detalle-contenido">
+          <img id="detalle-poster" class="detalle-poster" src="" alt="Póster" />
+
+          <div class="detalle-info">
+            <h1 id="detalle-titulo" class="detalle-titulo">Cargando...</h1>
+
+            <div class="detalle-meta">
+              <span id="meta-anio">----</span>
+              <span class="badge" id="meta-tipo">--</span>
+            </div>
+
+            <p id="detalle-descripcion" class="detalle-descripcion">
+              Cargando descripción...
+            </p>
+
+            <div class="detalle-botones">
+              <button id="btn-reproducir" class="boton-principal">
+                <span class="material-symbols-outlined">play_arrow</span>
+                Reproducir
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MOCK: Sección Más como esto -->
+      <section class="seccion-peliculas">
+        <h2 class="subtitulo">Más como esto</h2>
+        <div class="contenedor-carrusel">
+          <div class="rejilla-peliculas" id="contenedor-similares">
+            <!-- Se rellenará con JS -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="pie-pagina">
+      <div class="contenedor-pie">
+        <div class="marca-pie">
+          <a href="index.html" class="enlace-pie">
+            <img
+              src="../Img/icono.png"
+              alt="Logo de PureStream"
+              class="logo-pie"
+          /></a>
+          <a href="index.html" class="enlace-pie"><span>PureStream</span></a>
+        </div>
+
+        <span class="enlace-pie">Sin ánimo de lucro. Con fines educativos</span>
+        <ul class="enlaces-pie">
+          <li><a href="index.html" class="enlace-pie">Inicio</a></li>
+          <li><a href="peliculas.html" class="enlace-pie">Películas</a></li>
+          <li><a href="series.html" class="enlace-pie">Series</a></li>
+          <li>
+            <a href="../User/login.html" class="enlace-pie">Mi Perfil</a>
+          </li>
+          <li>
+            <a href="../User/planes.html" class="enlace-pie">Suscripción</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+    <script src="../Scripts/player.js"></script>
+  </body>
+</html>

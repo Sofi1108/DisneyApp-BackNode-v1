@@ -1,10 +1,10 @@
 const API =
   "https://fantastic-invention-jj5rg46jjg6gfq7xg-3000.app.github.dev/api/movies";
 
-// Buscamos el contenedor de forma más flexible
+// Buscamos el contenedor de forma más flexible para que funcione en todas las páginas
 const getContenedor = () => {
   return (
-    document.querySelector(".seccion-resultados .rejilla-peliculas") ||
+    document.querySelector(".seccion-resultados #contenedor-resultados") ||
     document.querySelector(".seccion-explorar .rejilla-peliculas") ||
     document.querySelector(".rejilla-peliculas")
   );
@@ -16,6 +16,9 @@ const $contenedorRecomendados = document.querySelector(
 
 let categoriaActual = null;
 
+/**
+ * Carga y filtra películas según la página, categoría y orden
+ */
 async function LoadMovies(categoriaID = null, ordenAño = "desc") {
   categoriaActual = categoriaID;
   const $contenedorPrincipal = getContenedor();
@@ -30,7 +33,7 @@ async function LoadMovies(categoriaID = null, ordenAño = "desc") {
     const esPaginaSeries = path.includes("series.html");
     const esPaginaPeliculas = path.includes("peliculas.html");
 
-    // 1. Filtrar por tipo y categoría
+    // 1. Filtrar por tipo (Serie/Peli) y categoría
     let filtrados = movies.filter((item) => {
       let pasaTipo =
         esHome ||
@@ -44,12 +47,12 @@ async function LoadMovies(categoriaID = null, ordenAño = "desc") {
       return ordenAño === "desc" ? b.año - a.año : a.año - b.año;
     });
 
-    // Función para generar HTML
+    // 3. Función para generar HTML (CON LOGICA DE REPRODUCTOR)
     const renderHTML = (lista) => {
       return lista
         .map(
           (peli) => `
-                <div class="tarjeta-pelicula">
+                <div class="tarjeta-pelicula" onclick="window.location.href='player.html?id=${peli.id}'" style="cursor:pointer;">
                     <div class="portada-pelicula">
                         <img src="${peli.url_portada}" alt="${peli.titulo}" loading="lazy" />
                     </div>
@@ -63,12 +66,12 @@ async function LoadMovies(categoriaID = null, ordenAño = "desc") {
         .join("");
     };
 
-    // 3. Renderizar en el contenedor principal
+    // 4. Renderizar en el contenedor principal
     if ($contenedorPrincipal) {
       $contenedorPrincipal.innerHTML = renderHTML(filtrados);
     }
 
-    // 4. Renderizar Recomendados (si estamos en el index o paginas de tipo)
+    // 5. Renderizar Recomendados (si no hay filtro activo)
     if ($contenedorRecomendados && !categoriaID) {
       const recomendados = movies
         .filter(
@@ -90,11 +93,12 @@ async function LoadMovies(categoriaID = null, ordenAño = "desc") {
   }
 }
 
-// Exportar funciones al objeto window para year.js
+// Exportar funciones al objeto window para que year.js pueda verlas
 window.LoadMovies = LoadMovies;
 window.getCategoriaActual = () => categoriaActual;
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Carga inicial
   LoadMovies();
 
   // Eventos para los enlaces de categorías
@@ -103,20 +107,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   categoryLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
-      // Solo actuar si tiene data-categoria (evitar cerrar sesión, etc)
+      // Solo actuar si tiene data-categoria (evita errores con 'Cerrar Sesión')
       if (link.hasAttribute("data-categoria")) {
         e.preventDefault();
         const catId = link.getAttribute("data-categoria");
 
+        // Actualizar texto del botón si existe
         if (botonTexto && !link.closest(".acciones-usuario")) {
           botonTexto.innerHTML = `${link.textContent} <span class="material-symbols-outlined">expand_more</span>`;
         }
 
+        // Mantener el orden de año actual al filtrar
         const btnYear = document.getElementById("btn-ordenar-año");
         const orden = btnYear ? btnYear.getAttribute("data-orden") : "desc";
 
         LoadMovies(catId, orden);
       }
     });
+  });
+
+  // Efecto visual de la barra de navegación al hacer scroll
+  const nav = document.querySelector(".barra-navegacion");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      nav.style.background = "rgba(10, 8, 13, 1)";
+    } else {
+      nav.style.background =
+        "linear-gradient(to bottom, rgba(10, 8, 13, 1) 65%, transparent)";
+    }
   });
 });
