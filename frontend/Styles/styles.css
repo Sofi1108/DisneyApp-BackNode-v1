@@ -32,7 +32,7 @@ body {
   font-weight: 800;
   color: var(--violeta-principal);
   text-decoration: none;
-  transition: 0.8s; 
+  transition: 0.8s;
 }
 
 .enlace-logo:hover {
@@ -185,18 +185,16 @@ body {
   color: var(--negro-profundo);
 }
 
-
 .dropdown-categorias {
   position: relative;
   display: flex;
-  justify-content: center; 
-  margin: 2rem 0;         
+  justify-content: center;
+  margin: 2rem 0;
   z-index: 50;
 }
 
-
 .boton-categoria {
-  background: var(--violeta-principal); 
+  background: var(--violeta-principal);
   color: white;
   border: none;
   padding: 0.6rem 1.5rem;
@@ -213,7 +211,7 @@ body {
   display: block;
   top: 100%;
   left: 50%;
-  transform: translateX(-50%); 
+  transform: translateX(-50%);
 }
 
 .menu-desplegable.scrollable {
@@ -221,22 +219,22 @@ body {
   overflow-y: auto;
   border: 1px solid var(--violeta-principal);
   background-color: #1a161f;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
 .menu-desplegable li a.activo {
-    background-color: var(--violeta-principal);
-    color: var(--blanco);
-    font-weight: 800;
-    border-left: 4px solid var(--blanco); 
+  background-color: var(--violeta-principal);
+  color: var(--blanco);
+  font-weight: 800;
+  border-left: 4px solid var(--blanco);
 }
 
 .menu-desplegable.scrollable {
-    max-height: 250px;
-    overflow-y: auto;
-  
-    scrollbar-width: thin;
-    scrollbar-color: var(--violeta-principal) #1a161f;
+  max-height: 250px;
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--violeta-principal) #1a161f;
 }
 
 .seccion-peliculas {
@@ -369,4 +367,108 @@ body {
 
 .enlace-pie:hover {
   color: var(--violeta-principal);
+}
+/* --- AJUSTES GLOBALES PARA SCROLL --- */
+:root {
+  --nav-height: 70px;
+}
+
+body {
+  padding-top: var(
+    --nav-height
+  ); /* Evita que el hero se meta bajo la nav fija */
+}
+
+/* --- NAVEGACIÓN FIJA (ESTILO NETFLIX) --- */
+.barra-navegacion {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: var(--nav-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(10, 8, 13, 1) 100%
+  );
+  background-color: var(--negro-profundo);
+  z-index: 2000; /* Siempre por encima de todo */
+  box-sizing: border-box;
+}
+
+/* --- BOTÓN HERO (EL BLANCO) --- */
+.boton-reproducir-hero {
+  background: var(--blanco);
+  color: var(--negro-profundo);
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.boton-reproducir-hero:hover {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+/* --- SECCIÓN EXPLORAR Y BOTÓN GÉNERO --- */
+.seccion-explorar {
+  padding: 2rem 5% 0;
+}
+
+.encabezado-filtros {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.boton-filtro-genero {
+  background: var(--negro-profundo);
+  color: var(--blanco);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  transition: 0.3s;
+}
+
+.boton-filtro-genero:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* --- DROP_DOWNS Y SCROLL --- */
+.dropdown-categorias {
+  position: relative;
+  z-index: 1500; /* Por debajo de la barra de navegación pero sobre las películas */
+}
+
+.dropdown-categorias:hover .menu-desplegable {
+  display: block;
+  top: 100%;
+  left: 0;
+}
+
+.menu-desplegable.scrollable {
+  background-color: rgba(0, 0, 0, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+/* --- AJUSTE PIE DE PAGINA --- */
+.educational-tag {
+  font-size: 0.7rem;
+  opacity: 0.6;
 }
