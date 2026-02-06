@@ -1,135 +1,122 @@
 const API =
   "https://fantastic-invention-jj5rg46jjg6gfq7xg-3000.app.github.dev/api/movies";
 
-// Seleccionamos el contenedor de la sección de exploración (donde actúan los filtros)
-const $contenedorExplorar = document.querySelector(
-  ".seccion-explorar .rejilla-peliculas",
-);
-// Seleccionamos el segundo contenedor (el de "Podría interesarte")
+// Buscamos el contenedor de forma más flexible
+const getContenedor = () => {
+  return (
+    document.querySelector(".seccion-resultados .rejilla-peliculas") ||
+    document.querySelector(".seccion-explorar .rejilla-peliculas") ||
+    document.querySelector(".rejilla-peliculas")
+  );
+};
+
 const $contenedorRecomendados = document.querySelector(
   ".seccion-peliculas .rejilla-peliculas",
 );
 
-/**
- * Carga y filtra películas según la página y la categoría seleccionada
- */
-async function LoadMovies(categoriaID = null) {
+let categoriaActual = null;
+
+async function LoadMovies(categoriaID = null, ordenAño = "desc") {
+  categoriaActual = categoriaID;
+  const $contenedorPrincipal = getContenedor();
+
   try {
     const response = await fetch(API);
     const data = await response.json();
-    const allItems = data.movies;
+    let movies = data.movies;
 
     const path = window.location.pathname;
     const esHome = path.endsWith("index.html") || path === "/" || path === "";
     const esPaginaSeries = path.includes("series.html");
     const esPaginaPeliculas = path.includes("peliculas.html");
 
-    // 1. Lógica de filtrado para la sección principal (Explorar)
-    const filtrados = allItems.filter((item) => {
-      let pasaTipo = false;
-      if (esHome) pasaTipo = true;
-      else if (esPaginaSeries) pasaTipo = item.SeriePelicula === 0;
-      else if (esPaginaPeliculas) pasaTipo = item.SeriePelicula === 1;
-
-      let pasaCategoria = true;
-      if (categoriaID) {
-        pasaCategoria = item.categoria_id == categoriaID;
-      }
-
+    // 1. Filtrar por tipo y categoría
+    let filtrados = movies.filter((item) => {
+      let pasaTipo =
+        esHome ||
+        (esPaginaSeries ? item.SeriePelicula === 0 : item.SeriePelicula === 1);
+      let pasaCategoria = !categoriaID || item.categoria_id == categoriaID;
       return pasaTipo && pasaCategoria;
     });
 
-    // Función auxiliar para construir el HTML de las tarjetas
+    // 2. Ordenar por año
+    filtrados.sort((a, b) => {
+      return ordenAño === "desc" ? b.año - a.año : a.año - b.año;
+    });
+
+    // Función para generar HTML
     const renderHTML = (lista) => {
       return lista
         .map(
           (peli) => `
-        <div class="tarjeta-pelicula">
-            <div class="portada-pelicula">
-                <img src="${peli.url_portada}" alt="${peli.titulo}" loading="lazy" />
-            </div>
-            <div class="info-tarjeta">
-                <span>${peli.titulo}</span>
-            </div>
-        </div>
-      `,
+                <div class="tarjeta-pelicula">
+                    <div class="portada-pelicula">
+                        <img src="${peli.url_portada}" alt="${peli.titulo}" loading="lazy" />
+                    </div>
+                    <div class="info-tarjeta">
+                        <span>${peli.titulo}</span>
+                        <small style="display:block; color:var(--gris-texto);">${peli.año}</small>
+                    </div>
+                </div>
+            `,
         )
         .join("");
     };
 
-    // Renderizamos en el contenedor principal de exploración
-    if ($contenedorExplorar) {
-      $contenedorExplorar.innerHTML = renderHTML(filtrados);
+    // 3. Renderizar en el contenedor principal
+    if ($contenedorPrincipal) {
+      $contenedorPrincipal.innerHTML = renderHTML(filtrados);
     }
 
-    // 2. Lógica para la sección "Podría interesarte" (Filtrado por tipo)
+    // 4. Renderizar Recomendados (si estamos en el index o paginas de tipo)
     if ($contenedorRecomendados && !categoriaID) {
-      // Filtramos la lista completa para que solo salgan Series en la página de Series y Pelis en la de Pelis
-      const recomendadosPorTipo = allItems.filter((item) => {
-        if (esHome) return true;
-        if (esPaginaSeries) return item.SeriePelicula === 0;
-        if (esPaginaPeliculas) return item.SeriePelicula === 1;
-        return true;
-      });
-
-      // Mezclamos un poco y mostramos 10 (estilo aleatorio)
-      const sugerencias = recomendadosPorTipo
+      const recomendados = movies
+        .filter(
+          (item) =>
+            esHome ||
+            (esPaginaSeries
+              ? item.SeriePelicula === 0
+              : item.SeriePelicula === 1),
+        )
         .sort(() => 0.5 - Math.random())
         .slice(0, 10);
 
-      $contenedorRecomendados.innerHTML = renderHTML(sugerencias);
+      $contenedorRecomendados.innerHTML = renderHTML(recomendados);
     }
   } catch (error) {
-    console.error("Error al cargar:", error);
-    if ($contenedorExplorar) {
-      $contenedorExplorar.innerHTML =
-        "<p>Error al conectar con la base de datos.</p>";
-    }
+    console.error("Error cargando pelis:", error);
+    if ($contenedorPrincipal)
+      $contenedorPrincipal.innerHTML = "<p>Error al cargar el contenido.</p>";
   }
 }
 
+// Exportar funciones al objeto window para year.js
+window.LoadMovies = LoadMovies;
+window.getCategoriaActual = () => categoriaActual;
+
 document.addEventListener("DOMContentLoaded", () => {
-  // Inicializamos la carga de películas
   LoadMovies();
 
-  // Selectores para el diseño de filtros
-  const categoryLinks = document.querySelectorAll(
-    ".dropdown-categorias .menu-desplegable a",
-  );
+  // Eventos para los enlaces de categorías
+  const categoryLinks = document.querySelectorAll(".menu-desplegable a");
   const botonTexto = document.querySelector(".boton-filtro-genero");
 
   categoryLinks.forEach((link) => {
-    link.addEventListener("click", async (e) => {
-      e.preventDefault();
+    link.addEventListener("click", (e) => {
+      // Solo actuar si tiene data-categoria (evitar cerrar sesión, etc)
+      if (link.hasAttribute("data-categoria")) {
+        e.preventDefault();
+        const catId = link.getAttribute("data-categoria");
 
-      // Manejo visual de clases activas
-      categoryLinks.forEach((l) => l.classList.remove("activo"));
-      link.classList.add("activo");
+        if (botonTexto && !link.closest(".acciones-usuario")) {
+          botonTexto.innerHTML = `${link.textContent} <span class="material-symbols-outlined">expand_more</span>`;
+        }
 
-      const categoriaID = link.getAttribute("data-categoria");
-      const nombreCategoria = link.textContent;
+        const btnYear = document.getElementById("btn-ordenar-año");
+        const orden = btnYear ? btnYear.getAttribute("data-orden") : "desc";
 
-      // Actualizar el texto del botón desplegable
-      const icono =
-        '<span class="material-symbols-outlined">expand_more</span>';
-      if (!categoriaID) {
-        botonTexto.innerHTML = `Géneros ${icono}`;
-      } else {
-        botonTexto.innerHTML = `${nombreCategoria} ${icono}`;
+        LoadMovies(catId, orden);
       }
-
-      // Ejecutar el filtrado (esto solo refresca la sección de exploración)
-      await LoadMovies(categoriaID);
     });
-  });
-
-  // Efecto visual: Navegación cambia de fondo al hacer scroll
-  const nav = document.querySelector(".barra-navegacion");
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      nav.style.backgroundColor = "rgba(10, 8, 13, 1)";
-    } else {
-      nav.style.backgroundColor = "rgba(10, 8, 13, 0.8)";
-    }
   });
 });

@@ -55,17 +55,48 @@
     </header>
 
     <main class="contenedor-principal">
+      <div class="encabezado-filtros alineado-izquierda">
+        <h2 class="subtitulo">Películas</h2>
+
+        <div class="dropdown-categorias">
+          <button class="boton-filtro-genero" id="boton-generos">
+            Géneros
+            <span class="material-symbols-outlined">expand_more</span>
+          </button>
+          <ul class="menu-desplegable scrollable">
+            <li><a href="#" data-categoria="">Ver todas</a></li>
+            <li><a href="#" data-categoria="1">Ciencia Ficción</a></li>
+            <li><a href="#" data-categoria="2">Terror</a></li>
+            <li><a href="#" data-categoria="3">Suspenso</a></li>
+            <li><a href="#" data-categoria="4">Comedia</a></li>
+            <li><a href="#" data-categoria="5">Drama</a></li>
+            <li><a href="#" data-categoria="12">Acción</a></li>
+            <li><a href="#" data-categoria="11">Animación</a></li>
+          </ul>
+        </div>
+
+        <button
+          id="btn-ordenar-año"
+          class="boton-filtro-genero"
+          data-orden="desc"
+        >
+          <span class="material-symbols-outlined">calendar_today</span>
+          <span id="texto-orden">Más recientes</span>
+          <span class="material-symbols-outlined" id="icono-flecha"
+            >arrow_downward</span
+          >
+        </button>
+      </div>
+
       <section class="seccion-resultados">
-        <h2 class="subtitulo-busqueda" id="titulo-resultados">
-          Explora contenido relacionado
-        </h2>
+        <div class="encabezado-resultados">
+          <h2 class="subtitulo-busqueda" id="titulo-resultados">
+            Explora contenido relacionado
+          </h2>
+        </div>
+
         <div class="rejilla-peliculas" id="contenedor-resultados">
-          <div class="tarjeta-pelicula">
-            <div class="portada-pelicula">
-              <img src="https://via.placeholder.com/300x450" alt="Resultado" />
-            </div>
-            <div class="info-tarjeta">Título Sugerido</div>
-          </div>
+          <div class="cargando-placeholder">Cargando contenido...</div>
         </div>
       </section>
     </main>
@@ -94,6 +125,8 @@
         </ul>
       </div>
     </footer>
+    <script src="../Scripts/app.js"></script>
+    <script src="../Scripts/year.js"></script>
     <script src="../Scripts/search.js"></script>
   </body>
 </html>
