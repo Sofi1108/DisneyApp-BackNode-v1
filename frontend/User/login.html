@@ -1,156 +1,118 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Iniciar sesión | PureStream</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../Styles/styles.css" />
-    <link rel="icon" href="../Img/icono.png" type="image/png" />
-    <link rel="stylesheet" href="../Styles/login.css" />
-  </head>
 
-  <body>
-    <header class="barra-navegacion">
-      <div class="logo">
-        <a href="../pages/index.html" class="enlace-logo">PureStream</a>
-      </div>
-      <div class="acciones-usuario">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PureStream | Iniciar sesión </title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="../Styles/styles.css" />
+  <link rel="icon" href="../Img/icono.png" type="image/png" />
+  <link rel="stylesheet" href="../Styles/login.css" />
+</head>
+
+<body>
+  <header class="barra-navegacion">
+    <div class="logo">
+      <a href="../pages/index.html" class="enlace-logo">PureStream</a>
+    </div>
+    <div class="acciones-usuario">
+      <span class="material-symbols-outlined">
+        <a href="#" class="enlace">search</a>
+      </span>
+      <div class="contenedor-avatar">
         <span class="material-symbols-outlined">
-          <a href="#" class="enlace">search</a>
+          <a href="#" class="enlace avatar-icon">account_circle</a>
         </span>
-        <div class="contenedor-avatar">
-          <span class="material-symbols-outlined">
-            <a href="#" class="enlace avatar-icon">account_circle</a>
-          </span>
-          <ul class="menu-desplegable">
-            <li><a href="login.html">Mi Perfil</a></li>
-            <li><a href="planes.html">Suscripción</a></li>
-            <li>
-              <hr />
-            </li>
-            <li><a href="#" class="cerrar-sesion">Cerrar Sesión</a></li>
-          </ul>
-        </div>
-      </div>
-    </header>
-    <main class="principal">
-      <!-- fondos glow -->
-      <div class="brillo brillo-izq" aria-hidden="true"></div>
-      <div class="brillo brillo-der" aria-hidden="true"></div>
-
-      <section class="contenedor contenedor-login">
-        <div class="tarjeta-login">
-          <header class="encabezado-login">
-            <h1 class="titulo-login">Bienvenido de nuevo</h1>
-            <p class="subtitulo-login">
-              Disfruta de tus series y películas favoritas con la mejor calidad.
-            </p>
-          </header>
-          <form id="formulario-login" class="formulario-login" novalidate>
-            <div class="campo">
-              <label class="etiqueta-campo" for="correo">Correo</label>
-              <input
-                id="correo"
-                name="correo"
-                class="entrada"
-                type="email"
-                placeholder="nombre@ejemplo.com"
-                autocomplete="email"
-                required
-              />
-              <p class="error-campo" id="error-correo" aria-live="polite"></p>
-            </div>
-            <div class="campo">
-              <div class="fila-entre">
-                <label class="etiqueta-campo" for="contrasena"
-                  >Contraseña</label
-                >
-                <a class="enlace-secundario" href="#"
-                  >¿Olvidaste tu contraseña?</a
-                >
-              </div>
-              <div class="fila-contrasena">
-                <input
-                  id="contrasena"
-                  name="contrasena"
-                  class="entrada"
-                  type="password"
-                  placeholder="••••••••"
-                  autocomplete="current-password"
-                  required
-                />
-                <button
-                  type="button"
-                  class="boton-ver"
-                  id="botonVerContrasena"
-                  aria-label="Mostrar u ocultar contraseña"
-                >
-                  <span class="material-symbols-outlined icono"
-                    >visibility</span
-                  >
-                </button>
-              </div>
-              <p
-                class="error-campo"
-                id="error-contrasena"
-                aria-live="polite"
-              ></p>
-            </div>
-            <label class="fila-checkbox">
-              <input id="recordar" class="checkbox" type="checkbox" />
-              <span>Mantener sesión iniciada</span>
-            </label>
-            <button class="boton-principal" type="submit">
-              Iniciar sesión
-            </button>
-            <p id="mensaje-login" class="mensaje-login" aria-live="polite"></p>
-          </form>
-          <footer class="pie-login">
-            <p class="texto-pie">
-              ¿Aún no tienes cuenta?
-              <a class="enlace-primario" href="#">Regístrate</a>
-            </p>
-          </footer>
-        </div>
-      </section>
-    </main>
-    <footer class="pie-pagina">
-      <div class="contenedor-pie">
-        <div class="marca-pie">
-          <a href="../pages/index.html" class="enlace-pie">
-            <img
-              src="../Img/icono.png"
-              alt="Logo de PureStream"
-              class="logo-pie"
-          /></a>
-          <a href="../pages/index.html" class="enlace-pie"
-            ><span>PureStream</span></a
-          >
-        </div>
-        <span class="enlace-pie">Sin ánimo de lucro. Con fines educativos</span>
-        <ul class="enlaces-pie">
-          <li><a href="../pages/index.html" class="enlace-pie">Inicio</a></li>
+        <ul class="menu-desplegable">
+          <li><a href="login.html">Mi Perfil</a></li>
+          <li><a href="planes.html">Suscripción</a></li>
           <li>
-            <a href="../pages/peliculas.html" class="enlace-pie">Películas</a>
+            <hr />
           </li>
-          <li><a href="../pages/series.html" class="enlace-pie">Series</a></li>
-          <li>
-            <a href="login.html" class="enlace-pie">Mi Perfil</a>
-          </li>
-          <li>
-            <a href="planes.html" class="enlace-pie">Suscripción</a>
-          </li>
+          <li><a href="#" class="cerrar-sesion">Cerrar Sesión</a></li>
         </ul>
       </div>
-    </footer>
-    <script defer src="../Scripts/login.js"></script>
-  </body>
+    </div>
+  </header>
+  <main class="principal">
+    <!-- fondos glow -->
+    <div class="brillo brillo-izq" aria-hidden="true"></div>
+    <div class="brillo brillo-der" aria-hidden="true"></div>
+
+    <section class="contenedor contenedor-login">
+      <div class="tarjeta-login">
+        <header class="encabezado-login">
+          <h1 class="titulo-login">Bienvenido de nuevo</h1>
+          <p class="subtitulo-login">
+            Disfruta de tus series y películas favoritas con la mejor calidad.
+          </p>
+        </header>
+        <form id="formulario-login" class="formulario-login" novalidate>
+          <div class="campo">
+            <label class="etiqueta-campo" for="correo">Correo</label>
+            <input id="correo" name="correo" class="entrada" type="email" placeholder="nombre@ejemplo.com"
+              autocomplete="email" required />
+            <p class="error-campo" id="error-correo" aria-live="polite"></p>
+          </div>
+          <div class="campo">
+            <div class="fila-entre">
+              <label class="etiqueta-campo" for="contrasena">Contraseña</label>
+              <a class="enlace-secundario" href="#">¿Olvidaste tu contraseña?</a>
+            </div>
+            <div class="fila-contrasena">
+              <input id="contrasena" name="contrasena" class="entrada" type="password" placeholder="••••••••"
+                autocomplete="current-password" required />
+              <button type="button" class="boton-ver" id="botonVerContrasena" aria-label="Mostrar u ocultar contraseña">
+                <span class="material-symbols-outlined icono">visibility</span>
+              </button>
+            </div>
+            <p class="error-campo" id="error-contrasena" aria-live="polite"></p>
+          </div>
+          <label class="fila-checkbox">
+            <input id="recordar" class="checkbox" type="checkbox" />
+            <span>Mantener sesión iniciada</span>
+          </label>
+          <button class="boton-principal" type="submit">
+            Iniciar sesión
+          </button>
+          <p id="mensaje-login" class="mensaje-login" aria-live="polite"></p>
+        </form>
+        <footer class="pie-login">
+          <p class="texto-pie">
+            ¿Aún no tienes cuenta?
+            <a class="enlace-primario" href="#">Regístrate</a>
+          </p>
+        </footer>
+      </div>
+    </section>
+  </main>
+  <footer class="pie-pagina">
+    <div class="contenedor-pie">
+      <div class="marca-pie">
+        <a href="../pages/index.html" class="enlace-pie">
+          <img src="../Img/icono.png" alt="Logo de PureStream" class="logo-pie" /></a>
+        <a href="../pages/index.html" class="enlace-pie"><span>PureStream</span></a>
+      </div>
+      <span class="enlace-pie">Sin ánimo de lucro. Con fines educativos</span>
+      <ul class="enlaces-pie">
+        <li><a href="../pages/index.html" class="enlace-pie">Inicio</a></li>
+        <li>
+          <a href="../pages/peliculas.html" class="enlace-pie">Películas</a>
+        </li>
+        <li><a href="../pages/series.html" class="enlace-pie">Series</a></li>
+        <li>
+          <a href="login.html" class="enlace-pie">Mi Perfil</a>
+        </li>
+        <li>
+          <a href="planes.html" class="enlace-pie">Suscripción</a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+  <script defer src="../Scripts/login.js"></script>
+</body>
+
 </html>
