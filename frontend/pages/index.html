@@ -56,37 +56,12 @@
           <p class="descripcion">
             Others create hype. We create impact. Let’s Go Beyond the Hype_
           </p>
-          <button class="boton-reproducir">
+          <button class="boton-reproducir-hero">
             <span class="material-symbols-outlined">play_arrow</span>
-            <span class="texto-boton">Reproducir</span>
+            <span>Reproducir</span>
           </button>
         </div>
       </section>
-
-      <div class="dropdown-categorias">
-        <button class="boton-reproducir">
-          Categorías
-          <span class="material-symbols-outlined">expand_more</span>
-        </button>
-        <ul class="menu-desplegable scrollable">
-          <li><a href="#" data-categoria="">Ver todas</a></li>
-          <li><a href="#" data-categoria="1">Ciencia Ficcion</a></li>
-          <li><a href="#" data-categoria="2">Terror</a></li>
-          <li><a href="#" data-categoria="3">Suspenso</a></li>
-          <li><a href="#" data-categoria="4">Comedia</a></li>
-          <li><a href="#" data-categoria="5">Drama</a></li>
-          <li><a href="#" data-categoria="6">Romance</a></li>
-          <li><a href="#" data-categoria="7">Musical</a></li>
-          <li><a href="#" data-categoria="8">Aventura</a></li>
-          <li><a href="#" data-categoria="9">Misterio</a></li>
-          <li><a href="#" data-categoria="10">Crimen</a></li>
-          <li><a href="#" data-categoria="11">Animación</a></li>
-          <li><a href="#" data-categoria="12">Acción</a></li>
-          <li><a href="#" data-categoria="13">Fantasía</a></li>
-          <li><a href="#" data-categoria="14">Clásicos</a></li>
-          <li><a href="#" data-categoria="15">Documental</a></li>
-        </ul>
-      </div>
 
       <section class="seccion-peliculas">
         <h2 class="subtitulo">Podría interesarte</h2>
@@ -94,7 +69,35 @@
           <div class="rejilla-peliculas"></div>
         </div>
       </section>
+      <section class="seccion-explorar">
+        <div class="encabezado-filtros">
+          <h2 class="subtitulo">¿Qué te apetece hoy?</h2>
+          <div class="dropdown-categorias">
+            <button class="boton-filtro-genero">
+              Géneros
+              <span class="material-symbols-outlined">expand_more</span>
+            </button>
+            <ul class="menu-desplegable scrollable">
+              <li><a href="#" data-categoria="">Ver todas</a></li>
+              <li><a href="#" data-categoria="1">Ciencia Ficción</a></li>
+              <li><a href="#" data-categoria="2">Terror</a></li>
+              <li><a href="#" data-categoria="3">Suspenso</a></li>
+              <li><a href="#" data-categoria="4">Comedia</a></li>
+              <li><a href="#" data-categoria="5">Drama</a></li>
+              <li><a href="#" data-categoria="6">Romance</a></li>
+              <li><a href="#" data-categoria="12">Acción</a></li>
+              <li><a href="#" data-categoria="11">Animación</a></li>
+              <li><a href="#" data-categoria="15">Documental</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="contenedor-carrusel">
+          <div class="rejilla-peliculas"></div>
+        </div>
+      </section>
     </main>
+
     <footer class="pie-pagina">
       <div class="contenedor-pie">
         <div class="marca-pie">
@@ -103,20 +106,18 @@
               src="../Img/icono.png"
               alt="Logo de PureStream"
               class="logo-pie"
-          /></a>
+            />
+          </a>
           <a href="index.html" class="enlace-pie"><span>PureStream</span></a>
         </div>
-        <span class="enlace-pie">Sin ánimo de lucro. Con fines educativos</span>
+        <span class="enlace-pie educational-tag"
+          >Sin ánimo de lucro. Con fines educativos</span
+        >
         <ul class="enlaces-pie">
           <li><a href="index.html" class="enlace-pie">Inicio</a></li>
           <li><a href="peliculas.html" class="enlace-pie">Películas</a></li>
           <li><a href="series.html" class="enlace-pie">Series</a></li>
-          <li>
-            <a href="../User/login.html" class="enlace-pie">Mi Perfil</a>
-          </li>
-          <li>
-            <a href="../User/planes.html" class="enlace-pie">Suscripción</a>
-          </li>
+          <li><a href="../User/login.html" class="enlace-pie">Mi Perfil</a></li>
         </ul>
       </div>
     </footer>

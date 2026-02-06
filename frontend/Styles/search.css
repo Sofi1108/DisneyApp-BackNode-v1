@@ -88,3 +88,70 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 }
+/* Ajuste para alinear los botones en el encabezado */
+.encabezado-filtros {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap; /* Para que en móviles no se rompa */
+}
+
+/* Estilo específico para resaltar que es un botón de acción */
+#btn-ordenar-año {
+  border-color: rgba(127, 13, 242, 0.4); /* Un toque violeta sutil */
+}
+
+#btn-ordenar-año:active {
+  transform: scale(0.95);
+}
+
+#btn-ordenar-año .material-symbols-outlined {
+  font-size: 1.2rem;
+}
+/* --- ENCABEZADO ALINEADO A LA IZQUIERDA --- */
+.encabezado-filtros.alineado-izquierda {
+  display: flex;
+  align-items: center; /* Alinea verticalmente el texto y botones */
+  gap: 1.5rem; /* Espacio entre el título y los filtros */
+  padding: 0 5%; /* Margen izquierdo y derecho del 5% */
+  margin: 2rem 0 1.5rem 0; /* Espaciado superior e inferior */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ajuste del título */
+.encabezado-filtros.alineado-izquierda .subtitulo {
+  margin: 0; /* Eliminamos márgenes que descuadran */
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--blanco);
+  letter-spacing: -0.05rem;
+}
+
+/* Botones de filtro estilo cápsula sutil */
+.boton-filtro-genero {
+  background: var(--negro-profundo);
+  color: var(--blanco);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  border-radius: 4px; /* Bordes ligeramente redondeados, muy Netflix */
+  transition: background 0.2s ease;
+}
+
+.boton-filtro-genero:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsivo para móviles */
+@media (max-width: 48rem) {
+  .encabezado-filtros.alineado-izquierda {
+    flex-wrap: wrap; /* Si no caben, bajan a la siguiente línea */
+    gap: 1rem;
+  }
+}
