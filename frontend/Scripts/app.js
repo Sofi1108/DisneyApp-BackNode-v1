@@ -59,21 +59,25 @@ async function LoadMovies(categoriaID = null) {
 // Inicializar
 LoadMovies();
 document.addEventListener("DOMContentLoaded", () => {
-  // Cambiamos a .dropdown-categorias button para que encuentre el tuyo
-  const categoryLinks = document.querySelectorAll(".dropdown-categorias .menu-desplegable a");
-  const botonTexto = document.querySelector(".dropdown-categorias .boton-reproducir");
+  const categoryLinks = document.querySelectorAll(
+    ".dropdown-categorias .menu-desplegable a",
+  );
+  const botonTexto = document.querySelector(
+    ".dropdown-categorias .boton-reproducir",
+  );
 
   categoryLinks.forEach((link) => {
     link.addEventListener("click", async (e) => {
       e.preventDefault();
       e.stopPropagation(); // Evita interferencias
 
-      categoryLinks.forEach(l => l.classList.remove("activo"));
+      categoryLinks.forEach((l) => l.classList.remove("activo"));
       link.classList.add("activo");
 
       const categoriaID = link.getAttribute("data-categoria");
 
-      const icono = '<span class="material-symbols-outlined">expand_more</span>';
+      const icono =
+        '<span class="material-symbols-outlined">expand_more</span>';
       if (!categoriaID) {
         botonTexto.innerHTML = `Categorías ${icono}`;
       } else {
