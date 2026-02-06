@@ -1,98 +1,87 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PureStream | Premium</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../Styles/styles.css" />
-    <link rel="stylesheet" href="../Styles/search.css" />
-    <link rel="icon" href="../Img/icono.png" type="image/png" />
-  </head>
-  <body>
-    <header class="barra-navegacion">
-      <div class="logo">
-        <a href="index.html" class="enlace-logo">PureStream</a>
-      </div>
-      <section class="contenedor-busqueda">
-        <div class="barra-busqueda-wrapper">
-          <span class="material-symbols-outlined icono-busqueda">search</span>
-          <input
-            type="text"
-            id="input-busqueda"
-            placeholder="Buscar por título..."
-            autofocus
-          />
-          <button class="limpiar-busqueda" id="btn-limpiar">
-            <span class="material-symbols-outlined">close</span>
-          </button>
-        </div>
-      </section>
-      <div class="acciones-usuario">
-        <div class="contenedor-avatar">
-          <span class="material-symbols-outlined">
-            <a href="#" class="enlace avatar-icon">account_circle</a>
-          </span>
-          <ul class="menu-desplegable">
-            <li><a href="../User/profile.html">Mi Perfil</a></li>
-            <li><a href="../User/planes.html">Suscripción</a></li>
-            <li><hr /></li>
-            <li>
-              <a href="../User/login.html" class="cerrar-sesion"
-                >Cerrar Sesión</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </header>
 
-    <main class="contenedor-principal">
-      <section class="seccion-resultados">
-        <h2 class="subtitulo-busqueda" id="titulo-resultados">
-          Explora contenido relacionado
-        </h2>
-        <div class="rejilla-peliculas" id="contenedor-resultados">
-          <div class="tarjeta-pelicula">
-            <div class="portada-pelicula">
-              <img src="https://via.placeholder.com/300x450" alt="Resultado" />
-            </div>
-            <div class="info-tarjeta">Título Sugerido</div>
-          </div>
-        </div>
-      </section>
-    </main>
-    <footer class="pie-pagina">
-      <div class="contenedor-pie">
-        <div class="marca-pie">
-          <a href="index.html" class="enlace-pie">
-            <img
-              src="../Img/icono.png"
-              alt="Logo de PureStream"
-              class="logo-pie"
-          /></a>
-          <a href="index.html" class="enlace-pie"><span>PureStream</span></a>
-        </div>
-        <ul class="enlaces-pie">
-          <li><a href="index.html" class="enlace-pie">Inicio</a></li>
-          <li><a href="peliculas.html" class="enlace-pie">Películas</a></li>
-          <li><a href="series.html" class="enlace-pie">Series</a></li>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PureStream | Buscar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="../Styles/styles.css" />
+  <link rel="stylesheet" href="../Styles/search.css" />
+  <link rel="icon" href="../Img/icono.png" type="image/png" />
+</head>
+
+<body>
+  <header class="barra-navegacion">
+    <div class="logo">
+      <a href="index.html" class="enlace-logo">PureStream</a>
+    </div>
+    <section class="contenedor-busqueda">
+      <div class="barra-busqueda-wrapper">
+        <span class="material-symbols-outlined icono-busqueda">search</span>
+        <input type="text" id="input-busqueda" placeholder="Buscar por título..." autofocus />
+        <button class="limpiar-busqueda" id="btn-limpiar">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+    </section>
+    <div class="acciones-usuario">
+      <div class="contenedor-avatar">
+        <span class="material-symbols-outlined">
+          <a href="#" class="enlace avatar-icon">account_circle</a>
+        </span>
+        <ul class="menu-desplegable">
+          <li><a href="../User/profile.html">Mi Perfil</a></li>
+          <li><a href="../User/planes.html">Suscripción</a></li>
           <li>
-            <a href="../User/login.html" class="enlace-pie">Mi Perfil</a>
+            <hr />
           </li>
           <li>
-            <a href="../User/planes.html" class="enlace-pie">Suscripción</a>
+            <a href="../User/login.html" class="cerrar-sesion">Cerrar Sesión</a>
           </li>
         </ul>
       </div>
-    </footer>
-    <script src="../Scripts/busqueda.js"></script>
-  </body>
+    </div>
+  </header>
+
+  <main class="contenedor-principal">
+    <section class="seccion-resultados">
+      <h2 class="subtitulo-busqueda" id="titulo-resultados">
+        Explora contenido relacionado
+      </h2>
+      <div class="rejilla-peliculas" id="contenedor-resultados">
+        <div class="tarjeta-pelicula">
+          <div class="portada-pelicula">
+            <img src="https://via.placeholder.com/300x450" alt="Resultado" />
+          </div>
+          <div class="info-tarjeta">Título Sugerido</div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="pie-pagina">
+    <div class="contenedor-pie">
+      <div class="marca-pie">
+        <a href="index.html" class="enlace-pie">
+          <img src="../Img/icono.png" alt="Logo de PureStream" class="logo-pie" /></a>
+        <a href="index.html" class="enlace-pie"><span>PureStream</span></a>
+      </div>
+      <ul class="enlaces-pie">
+        <li><a href="index.html" class="enlace-pie">Inicio</a></li>
+        <li><a href="peliculas.html" class="enlace-pie">Películas</a></li>
+        <li><a href="series.html" class="enlace-pie">Series</a></li>
+        <li>
+          <a href="../User/login.html" class="enlace-pie">Mi Perfil</a>
+        </li>
+        <li>
+          <a href="../User/planes.html" class="enlace-pie">Suscripción</a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+  <script src="../Scripts/busqueda.js"></script>
+</body>
+
 </html>
