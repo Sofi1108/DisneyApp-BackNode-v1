@@ -32,9 +32,134 @@
         <span class="material-symbols-outlined">
           <a href="#" class="enlace avatar-icon">account_circle</a>
         </span>
+<<<<<<< HEAD
         <ul class="menu-desplegable">
           <li><a href="profile.html">Mi Perfil</a></li>
           <li><a href="planes.html">Suscripción</a></li>
+=======
+        <div class="contenedor-avatar">
+          <span class="material-symbols-outlined">
+            <a href="#" class="enlace avatar-icon">account_circle</a>
+          </span>
+          <ul class="menu-desplegable">
+            <li><a href="profile.html">Mi Perfil</a></li>
+            <li><a href="planes.html">Suscripción</a></li>
+            <li>
+              <hr />
+            </li>
+            <li>
+              <a href="login.html" class="cerrar-sesion">Cerrar Sesión</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main class="contenedor principal">
+      <section class="introduccion">
+        <h1>Elige tu experiencia de streaming</h1>
+        <p>
+          Disfruta de tus series y películas favoritas con la mejor calidad.
+        </p>
+      </section>
+      <section class="facturacion">
+        <div class="selector-facturacion">
+          <label class="opcion-facturacion">
+            <input type="radio" name="facturacion" value="mensual" />
+            <span>Mensual</span>
+          </label>
+
+          <label class="opcion-facturacion">
+            <input type="radio" name="facturacion" value="anual" checked />
+            <span>
+              Anual
+              <em class="etiqueta">2 meses gratis</em>
+            </span>
+          </label>
+        </div>
+      </section>
+      <section class="planes">
+        <article class="tarjeta-plan">
+          <h3 class="nombre-plan secundario">START</h3>
+          <p class="precio">
+            <span class="valor-precio" data-mensual="0" data-anual="0">0</span>
+            <span class="sufijo-precio">€/mes</span>
+          </p>
+          <p class="descripcion-plan">
+            Acceso básico a contenido seleccionado.
+          </p>
+          <button class="boton-plan" data-plan="Start">Comenzar gratis</button>
+          <ul class="caracteristicas">
+            <li>Acceso a series seleccionadas</li>
+            <hr class="separador-plan" />
+            <li>Calidad SD</li>
+            <hr class="separador-plan" />
+            <li>Anuncios limitados</li>
+          </ul>
+        </article>
+        <article class="tarjeta-plan destacado">
+          <span class="recomendado">RECOMENDADO</span>
+          <h3 class="nombre-plan principal">SUMMIT</h3>
+          <p class="precio">
+            <span class="valor-precio" data-mensual="19.99" data-anual="199.99"
+              >19.99</span
+            >
+            <span class="sufijo-precio">€/mes</span>
+          </p>
+          <p class="descripcion-plan">
+            La mejor experiencia visual sin anuncios.
+          </p>
+          <button class="boton-plan boton-principal" data-plan="Summit">
+            Elegir plan
+          </button>
+          <ul class="caracteristicas">
+            <li>Calidad 4K HDR</li>
+            <hr class="separador-plan" />
+            <li>4 dispositivos simultáneos</li>
+            <hr class="separador-plan" />
+            <li>Sin anuncios</li>
+          </ul>
+        </article>
+        <article class="tarjeta-plan">
+          <h3 class="nombre-plan acento">ASCEND</h3>
+          <p class="precio">
+            <span class="valor-precio" data-mensual="9.99" data-anual="99.99"
+              >9.99</span
+            >
+            <span class="sufijo-precio">€/mes</span>
+          </p>
+          <p class="descripcion-plan">Equilibrio entre calidad y precio.</p>
+          <button class="boton-plan boton-acento" data-plan="Ascend">
+            Elegir plan
+          </button>
+          <ul class="caracteristicas">
+            <li>Calidad HD</li>
+            <hr class="separador-plan" />
+            <li>2 dispositivos</li>
+            <hr class="separador-plan" />
+            <li>Descargas offline</li>
+          </ul>
+        </article>
+      </section>
+      <p id="planSeleccionado" class="mensaje-seleccion"></p>
+    </main>
+    <footer class="pie-pagina">
+      <div class="contenedor-pie">
+        <div class="marca-pie">
+          <a href="../pages/index.html" class="enlace-pie">
+            <img
+              src="../Img/icono.png"
+              alt="Logo de PureStream"
+              class="logo-pie"
+          /></a>
+          <a href="../pages/index.html" class="enlace-pie"
+            ><span>PureStream</span></a
+          >
+        </div>
+        <span class="enlace-pie">Sin ánimo de lucro. Con fines educativos</span>
+        <ul class="enlaces-pie">
+          <li><a href="../pages/index.html" class="enlace-pie">Inicio</a></li>
+>>>>>>> 096b93bfb37b3ecd455793c4398ce62c3034d675
           <li>
             <hr />
           </li>
