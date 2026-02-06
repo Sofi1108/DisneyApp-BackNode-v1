@@ -8,9 +8,9 @@ Bienvenido a **PureStream**, nuestra primera plataforma de streaming desarrollad
 
 Somos estudiantes de Desarrollo de Aplicaciones Multiplataforma y este es nuestro primer gran hito colaborativo:
 
-- **Sofia Torcal** - [Tu Rol/Responsabilidad, ej: Frontend & UI Design]
-- **Daniel Romea** - [Tu Rol/Responsabilidad, ej: Backend & Database Management]
-- **David Omeñaca** - [Tu Rol/Responsabilidad, ej: Logic & Integration]
+- **Sofia Torcal** 
+- **Daniel Romea** 
+- **David Omeñaca** 
 
 ---
 
