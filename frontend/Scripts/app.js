@@ -24,15 +24,13 @@ async function LoadMovies(categoriaID = null) {
     const esPaginaSeries = path.includes("series.html");
     const esPaginaPeliculas = path.includes("peliculas.html");
 
-    // Lógica de filtrado
+    // 1. Lógica de filtrado para la sección principal (Explorar)
     const filtrados = allItems.filter((item) => {
-      // 1. Filtro por tipo (Serie o Película)
       let pasaTipo = false;
       if (esHome) pasaTipo = true;
       else if (esPaginaSeries) pasaTipo = item.SeriePelicula === 0;
       else if (esPaginaPeliculas) pasaTipo = item.SeriePelicula === 1;
 
-      // 2. Filtro por categoría (ID de la base de datos)
       let pasaCategoria = true;
       if (categoriaID) {
         pasaCategoria = item.categoria_id == categoriaID;
@@ -41,7 +39,7 @@ async function LoadMovies(categoriaID = null) {
       return pasaTipo && pasaCategoria;
     });
 
-    // Construcción del HTML
+    // Función auxiliar para construir el HTML de las tarjetas
     const renderHTML = (lista) => {
       return lista
         .map(
@@ -64,9 +62,22 @@ async function LoadMovies(categoriaID = null) {
       $contenedorExplorar.innerHTML = renderHTML(filtrados);
     }
 
-    // Para la sección "Podría interesarte", mostramos una selección aleatoria o fija (solo la primera vez)
+    // 2. Lógica para la sección "Podría interesarte" (Filtrado por tipo)
     if ($contenedorRecomendados && !categoriaID) {
-      $contenedorRecomendados.innerHTML = renderHTML(allItems.slice(0, 10));
+      // Filtramos la lista completa para que solo salgan Series en la página de Series y Pelis en la de Pelis
+      const recomendadosPorTipo = allItems.filter((item) => {
+        if (esHome) return true;
+        if (esPaginaSeries) return item.SeriePelicula === 0;
+        if (esPaginaPeliculas) return item.SeriePelicula === 1;
+        return true;
+      });
+
+      // Mezclamos un poco y mostramos 10 (estilo aleatorio)
+      const sugerencias = recomendadosPorTipo
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 10);
+
+      $contenedorRecomendados.innerHTML = renderHTML(sugerencias);
     }
   } catch (error) {
     console.error("Error al cargar:", error);
@@ -77,14 +88,11 @@ async function LoadMovies(categoriaID = null) {
   }
 }
 
-/**
- * Configuración de eventos de los filtros de categoría
- */
 document.addEventListener("DOMContentLoaded", () => {
   // Inicializamos la carga de películas
   LoadMovies();
 
-  // Selectores actualizados para el nuevo diseño Netflix
+  // Selectores para el diseño de filtros
   const categoryLinks = document.querySelectorAll(
     ".dropdown-categorias .menu-desplegable a",
   );
@@ -110,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
         botonTexto.innerHTML = `${nombreCategoria} ${icono}`;
       }
 
-      // Ejecutar el filtrado
+      // Ejecutar el filtrado (esto solo refresca la sección de exploración)
       await LoadMovies(categoriaID);
     });
   });
