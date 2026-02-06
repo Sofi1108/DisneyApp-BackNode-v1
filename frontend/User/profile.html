@@ -1,24 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PureStream | Mi Perfil</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../Styles/styles.css" />
     <link rel="stylesheet" href="../Styles/perfil.css" />
-</head>
-<body>
+  </head>
+  <body>
     <header class="barra-navegacion">
-        <div class="logo">
-            <a href="index.html" class="enlace-logo">PureStream</a>
-        </div>
-        <nav class="menu-principal">
-            <a href="../pages/index.html" class="enlace">Inicio</a>
-            <a href="../pages/peliculas.html" class="enlace">Películas</a>
-            <a href="../pages/series.html" class="enlace">Series</a>
-        </nav>
+      <div class="logo">
+        <a href="index.html" class="enlace-logo">PureStream</a>
+      </div>
+      <nav class="menu-principal">
+        <a href="../pages/index.html" class="enlace">Inicio</a>
+        <a href="../pages/peliculas.html" class="enlace">Películas</a>
+        <a href="../pages/series.html" class="enlace">Series</a>
+      </nav>
       <div class="acciones-usuario">
         <span class="material-symbols-outlined">
           <a href="#" class="enlace">search</a>
@@ -31,48 +37,80 @@
             <li><a href="profile.html">Mi Perfil</a></li>
             <li><a href="planes.html">Suscripción</a></li>
             <li><hr /></li>
-            <li><a href="login.html" class="cerrar-sesion">Cerrar Sesión</a></li>
+            <li>
+              <a href="login.html" class="cerrar-sesion">Cerrar Sesión</a>
+            </li>
           </ul>
         </div>
       </div>
     </header>
 
     <main class="contenedor-perfil">
-        <section class="seccion-usuario">
-            <div class="avatar-grande">
-                <span class="material-symbols-outlined">account_circle</span>
-                <button class="boton-editar-foto">
-                    <span class="material-symbols-outlined">edit</span>
-                </button>
-            </div>
-            <div class="info-usuario">
-                <h1 class="nombre-usuario">User</h1>
-                <p class="email-usuario">usuario@example.com</p>
-                <div class="badges">
-                    <span class="badge-premium">Premium</span>
-                    <span class="badge-antiguedad">Miembro desde 2024</span>
-                </div>
-                <button class="boton-reproducir">
-                    <span class="material-symbols-outlined">settings</span>
-                    <span class="texto-boton">Editar Perfil</span>
-                </button>
-            </div>
-        </section>
+      <section class="seccion-usuario">
+        <div class="avatar-grande">
+          <span class="material-symbols-outlined">account_circle</span>
+          <button class="boton-editar-foto">
+            <span class="material-symbols-outlined">edit</span>
+          </button>
+        </div>
+        <div class="info-usuario">
+          <h1 class="nombre-usuario">User</h1>
+          <p class="email-usuario">usuario@example.com</p>
+          <div class="badges">
+            <span class="badge-premium">Premium</span>
+            <span class="badge-antiguedad">Miembro desde 2024</span>
+          </div>
+          <button class="boton-reproducir">
+            <span class="material-symbols-outlined">settings</span>
+            <span class="texto-boton">Editar Perfil</span>
+          </button>
+        </div>
+      </section>
 
-        <section class="stats-grid">
-            <div class="stat-card">
-                <h3>124</h3>
-                <p>Vistas</p>
-            </div>
-            <div class="stat-card">
-                <h3>12</h3>
-                <p>Mi Lista</p>
-            </div>
-            <div class="stat-card">
-                <h3>45h</h3>
-                <p>Tiempo total</p>
-            </div>
-        </section>
+      <section class="stats-grid">
+        <div class="stat-card">
+          <h3>124</h3>
+          <p>Vistas</p>
+        </div>
+        <div class="stat-card">
+          <h3>12</h3>
+          <p>Mi Lista</p>
+        </div>
+        <div class="stat-card">
+          <h3>45h</h3>
+          <p>Tiempo total</p>
+        </div>
+      </section>
     </main>
-</body>
+    <footer class="pie-pagina">
+      <div class="contenedor-pie">
+        <div class="marca-pie">
+          <a href="index.html" class="enlace-pie">
+            <img
+              src="../Img/icono.png"
+              alt="Logo de PureStream"
+              class="logo-pie"
+          /></a>
+          <a href="../pages/index.html" class="enlace-pie"
+            ><span>PureStream</span></a
+          >
+        </div>
+
+        <span class="enlace-pie">Sin ánimo de lucro. Con fines educativos</span>
+        <ul class="enlaces-pie">
+          <li><a href="../pages/index.html" class="enlace-pie">Inicio</a></li>
+          <li>
+            <a href="../pages/peliculas.html" class="enlace-pie">Películas</a>
+          </li>
+          <li><a href="../pages/series.html" class="enlace-pie">Series</a></li>
+          <li>
+            <a href="../User/login.html" class="enlace-pie">Mi Perfil</a>
+          </li>
+          <li>
+            <a href="../User/planes.html" class="enlace-pie">Suscripción</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+  </body>
 </html>
